@@ -1,0 +1,5 @@
+inherited CadastroDepartamentos: TCadastroDepartamentos
+  Caption = 'Cadastro de Departamentos'
+  PixelsPerInch = 96
+  TextHeight = 13
+end

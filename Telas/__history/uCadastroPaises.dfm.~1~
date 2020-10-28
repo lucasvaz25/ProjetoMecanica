@@ -1,0 +1,52 @@
+inherited CadastroPaises: TCadastroPaises
+  Caption = 'Cadastro de Pa'#237'ses'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel1: TPanel
+    object lblPais: TLabel [3]
+      Left = 20
+      Top = 82
+      Width = 19
+      Height = 13
+      Caption = 'Pa'#237's'
+    end
+    object lblSigla: TLabel [4]
+      Left = 20
+      Top = 131
+      Width = 22
+      Height = 13
+      Caption = 'Sigla'
+    end
+    object lblDDI: TLabel [5]
+      Left = 148
+      Top = 131
+      Width = 18
+      Height = 13
+      Caption = 'DDI'
+    end
+    object edtPais: TEdit
+      Left = 16
+      Top = 101
+      Width = 473
+      Height = 21
+      CharCase = ecUpperCase
+      TabOrder = 5
+    end
+    object edtSigla: TEdit
+      Left = 16
+      Top = 144
+      Width = 70
+      Height = 21
+      CharCase = ecUpperCase
+      TabOrder = 6
+    end
+    object edtDDI: TEdit
+      Left = 144
+      Top = 144
+      Width = 64
+      Height = 21
+      CharCase = ecUpperCase
+      TabOrder = 7
+    end
+  end
+end

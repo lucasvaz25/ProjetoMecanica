@@ -1,0 +1,82 @@
+inherited CadastroPaises: TCadastroPaises
+  Caption = 'Cadastro de Pa'#237'ses'
+  ClientHeight = 197
+  ClientWidth = 636
+  ExplicitWidth = 652
+  ExplicitHeight = 236
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel1: TPanel
+    Width = 636
+    Height = 197
+    inherited lblDataCad: TLabel
+      Left = 17
+      Top = 142
+    end
+    inherited lblDataUltAlt: TLabel
+      Left = 146
+      Top = 142
+    end
+    object lblPais: TLabel [3]
+      Left = 20
+      Top = 82
+      Width = 19
+      Height = 13
+      Caption = 'Pa'#237's'
+    end
+    object lblSigla: TLabel [4]
+      Left = 500
+      Top = 85
+      Width = 22
+      Height = 13
+      Caption = 'Sigla'
+    end
+    object lblDDI: TLabel [5]
+      Left = 559
+      Top = 85
+      Width = 18
+      Height = 13
+      Caption = 'DDI'
+    end
+    inherited edtDataCad: TEdit
+      Left = 17
+      Top = 161
+    end
+    inherited EedtDataUltAlt: TEdit
+      Left = 146
+      Top = 161
+    end
+    inherited btnSalvar: TBitBtn
+      Left = 377
+      Top = 155
+    end
+    inherited btnSair: TBitBtn
+      Left = 521
+      Top = 155
+    end
+    object edtPais: TEdit
+      Left = 17
+      Top = 101
+      Width = 464
+      Height = 21
+      CharCase = ecUpperCase
+      TabOrder = 5
+    end
+    object edtSigla: TEdit
+      Left = 499
+      Top = 101
+      Width = 42
+      Height = 21
+      CharCase = ecUpperCase
+      TabOrder = 6
+    end
+    object edtDDI: TEdit
+      Left = 555
+      Top = 101
+      Width = 41
+      Height = 21
+      CharCase = ecUpperCase
+      TabOrder = 7
+    end
+  end
+end

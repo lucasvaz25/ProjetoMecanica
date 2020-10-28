@@ -1,0 +1,62 @@
+inherited CadastroEstados: TCadastroEstados
+  Caption = 'Cadastro de Estados'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel1: TPanel
+    object lblEstado: TLabel [3]
+      Left = 19
+      Top = 73
+      Width = 33
+      Height = 13
+      Caption = 'Estado'
+    end
+    object lblUF: TLabel [4]
+      Left = 479
+      Top = 73
+      Width = 13
+      Height = 13
+      Caption = 'UF'
+    end
+    object lblCodPais: TLabel [5]
+      Left = 19
+      Top = 122
+      Width = 45
+      Height = 13
+      Caption = 'C'#243'd. Pa'#237's'
+    end
+    object edtEstado: TEdit
+      Left = 16
+      Top = 88
+      Width = 449
+      Height = 21
+      CharCase = ecUpperCase
+      MaxLength = 50
+      TabOrder = 6
+    end
+    object edtUF: TEdit
+      Left = 475
+      Top = 88
+      Width = 26
+      Height = 21
+      CharCase = ecUpperCase
+      MaxLength = 2
+      TabOrder = 7
+    end
+    object edtCodPais: TEdit
+      Left = 16
+      Top = 136
+      Width = 57
+      Height = 21
+      TabOrder = 8
+    end
+    object edtPais: TEdit
+      Left = 87
+      Top = 136
+      Width = 378
+      Height = 21
+      CharCase = ecUpperCase
+      MaxLength = 50
+      TabOrder = 9
+    end
+  end
+end

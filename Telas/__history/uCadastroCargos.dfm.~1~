@@ -1,0 +1,20 @@
+inherited CadastroCargos: TCadastroCargos
+  Caption = 'Cadastro de Cargos'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel1: TPanel
+    ExplicitWidth = 646
+    inherited lblDataCad: TLabel
+      ExplicitLeft = 27
+    end
+    inherited lblDataUltAlt: TLabel
+      ExplicitLeft = 156
+    end
+    inherited edtDataCad: TEdit
+      ExplicitLeft = 27
+    end
+    inherited EedtDataUltAlt: TEdit
+      ExplicitLeft = 156
+    end
+  end
+end

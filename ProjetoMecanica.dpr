@@ -33,7 +33,11 @@ uses
   UController in 'Code\UController.pas',
   UControllerCidades in 'Code\UControllerCidades.pas',
   UControllerEstados in 'Code\UControllerEstados.pas',
-  UControllerPaises in 'Code\UControllerPaises.pas';
+  UControllerPaises in 'Code\UControllerPaises.pas',
+  uControllerCargos in 'Code\uControllerCargos.pas',
+  uControllerDepartamentos in 'Code\uControllerDepartamentos.pas',
+  uControllerFuncionarios in 'Code\uControllerFuncionarios.pas',
+  uControllerServicos in 'Code\uControllerServicos.pas';
 
 {$R *.res}
 

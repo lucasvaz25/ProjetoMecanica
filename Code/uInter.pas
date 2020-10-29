@@ -8,6 +8,10 @@ uses
   UCadastroPaises,
   UCadastroEstados,
   UCadastroCidades,
+  UCadastroServicos,
+  UCadastroCargos,
+  UCadastroFuncionarios,
+  UCadastroDepartamentos,
   UConsultaPaises,
   UConsultaEstados,
   UConsultaCidades,
@@ -33,6 +37,10 @@ type
     OCadastroPaises: TCadastroPaises;
     OCadastroEstados: TCadastroEstados;
     OCadastroCidades: TCadastroCidades;
+    OCadastroFuncionarios: TCadastroFuncionarios;
+    OCadastroCargos: TCadastroCargos;
+    OCadastroDepartamentos: TCadastroDepartamentos;
+    OCadastroServicos: TCadastroServicos;
   public
     constructor CrieObj;
     destructor Destrua_se;
@@ -61,14 +69,23 @@ begin
   AConsultaCargos        := TConsultaCargos.Create( nil );
   AConsultaDepartamentos := TConsultaDepartamentos.Create( nil );
   AConsultaServicos      := TConsultaServicos.Create( nil );
+
   OCadastroPaises        := TCadastroPaises.Create( nil );
   OCadastroEstados       := TCadastroEstados.Create( nil );
   OCadastroCidades       := TCadastroCidades.Create( nil );
+  OCadastroFuncionarios  := TCadastroFuncionarios.Create( nil );
+  OCadastroCargos        := TCadastroCargos.Create( nil );
+  OCadastroDepartamentos := TCadastroDepartamentos.Create( nil );
+  OCadastroServicos      := TCadastroServicos.Create( nil );
 
   AConsultaPaises.SetFormCadastro( OCadastroPaises );
-  // AConsultaEstados.SetFormCadastro( OCadastroEstados );
-  // AConsultaCidades.SetFormCadastro( OCadastroCidades );
-  //
+  AConsultaEstados.SetFormCadastro( OCadastroEstados );
+  AConsultaCidades.SetFormCadastro( OCadastroCidades );
+  AConsultaFuncionarios.SetFormCadastro( OCadastroFuncionarios );
+  AConsultaCargos.SetFormCadastro( OCadastroCargos );
+  AConsultaDepartamentos.SetFormCadastro( OCadastroDepartamentos );
+  AConsultaServicos.SetFormCadastro( OCadastroServicos );
+
   // OCadastroEstados.SetConsultaPaises( AConsultaPaises );
   // OCadastroCidades.SetConsultaEstados( AConsultaEstados );
 end;
@@ -85,6 +102,10 @@ begin
   OCadastroPaises.FreeInstance;
   OCadastroEstados.FreeInstance;
   OCadastroCidades.FreeInstance;
+  OCadastroFuncionarios.FreeInstance;
+  OCadastroCargos.FreeInstance;
+  OCadastroDepartamentos.FreeInstance;
+  OCadastroServicos.FreeInstance;
 end;
 {$ENDREGION}
 {$REGION 'PECA_DADOS'}
@@ -98,33 +119,37 @@ end;
 
 procedure Inter.ConsultaDepartamentos( PObj, PCtrl: TObject );
 begin
-  AConsultaServicos.ShowModal;
+  AConsultaDepartamentos.ConhecaObj( PObj, PCtrl );
+  AConsultaDepartamentos.ShowModal;
 end;
 
 procedure Inter.ConsultaServicos( PObj, PCtrl: TObject );
 begin
+  AConsultaServicos.ConhecaObj( PObj, PCtrl );
   AConsultaServicos.ShowModal;
 end;
 
 procedure Inter.ConsultaEstados( PObj: TObject; PCtrl: TObject );
 begin
-  // AConsultaEstados.ConhecaObj( PObj, PCtrl );
+  AConsultaEstados.ConhecaObj( PObj, PCtrl );
   AConsultaEstados.ShowModal;
 end;
 
 procedure Inter.ConsultaCargos( PObj, PCtrl: TObject );
 begin
+  AConsultaCargos.ConhecaObj( PObj, PCtrl );
   AConsultaCargos.ShowModal;
 end;
 
 procedure Inter.ConsultaFuncionaros( PObj, PCtrl: TObject );
 begin
+  AConsultaFuncionarios.ConhecaObj( PObj, PCtrl );
   AConsultaFuncionarios.ShowModal;
 end;
 
 procedure Inter.ConsultaCidades( PObj: TObject; PCtrl: TObject );
 begin
-  // AConsultaCidades.ConhecaObj( PObj, PCtrl );
+  AConsultaCidades.ConhecaObj( PObj, PCtrl );
   AConsultaCidades.ShowModal;
 end;
 

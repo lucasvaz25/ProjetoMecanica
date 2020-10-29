@@ -1,0 +1,26 @@
+unit uServicos;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+  UPai;
+
+type
+  Servicos = class( Pai )
+  private
+  protected
+  public
+    constructor CrieObj;
+    destructor Destrua_se;
+
+    property Servico: string;
+    property Obs: string;
+
+    function Clone: Servicos;
+  end;
+
+implementation
+
+end.

@@ -104,11 +104,6 @@
             <Form>Gerente</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="uPai.pas"/>
-        <DCCReference Include="uFuncionario.pas"/>
-        <DCCReference Include="ucidades.pas"/>
-        <DCCReference Include="uestados.pas"/>
-        <DCCReference Include="upaises.pas"/>
         <DCCReference Include="TelaHeranca\uConsulta.pas">
             <Form>Consulta</Form>
             <FormType>dfm</FormType>
@@ -145,7 +140,6 @@
             <Form>ConsultaServicos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="uInter.pas"/>
         <DCCReference Include="Telas\uCadastroPaises.pas">
             <Form>CadastroPaises</Form>
             <FormType>dfm</FormType>
@@ -174,6 +168,21 @@
             <Form>CadastroFuncionarios</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Code\uPessoas.pas"/>
+        <DCCReference Include="Code\ucidades.pas"/>
+        <DCCReference Include="Code\uestados.pas"/>
+        <DCCReference Include="Code\uFuncionario.pas"/>
+        <DCCReference Include="Code\uInter.pas"/>
+        <DCCReference Include="Code\uPai.pas"/>
+        <DCCReference Include="Code\upaises.pas"/>
+        <DCCReference Include="Code\uDepartamento.pas"/>
+        <DCCReference Include="Code\uCargos.pas"/>
+        <DCCReference Include="Code\uServicos.pas"/>
+        <DCCReference Include="Code\uDAO.pas"/>
+        <DCCReference Include="Code\UController.pas"/>
+        <DCCReference Include="Code\UControllerCidades.pas"/>
+        <DCCReference Include="Code\UControllerEstados.pas"/>
+        <DCCReference Include="Code\UControllerPaises.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

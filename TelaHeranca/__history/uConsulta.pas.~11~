@@ -1,0 +1,82 @@
+unit uConsulta;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.ExtCtrls,
+  Data.DB,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  Vcl.StdCtrls,
+  Vcl.Buttons;
+
+type
+  TConsulta = class( TForm )
+    Panel1: TPanel;
+    EdtPesquisa: TEdit;
+    DBGrid1: TDBGrid;
+    BtnPesquisar: TBitBtn;
+    BtnNovo: TBitBtn;
+    BtnAlterar: TBitBtn;
+    BitBtn3: TBitBtn;
+    BtnSair: TBitBtn;
+    procedure FormShow( Sender: TObject );
+    procedure BtnSairClick( Sender: TObject );
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure Novo; virtual;
+    procedure Alterar; virtual;
+    procedure Excluir; virtual;
+    procedure Sair; virtual;
+  end;
+
+var
+  Consulta: TConsulta;
+
+implementation
+
+{$R *.dfm}
+
+
+procedure TConsulta.Alterar;
+begin
+
+end;
+
+procedure TConsulta.BtnSairClick( Sender: TObject );
+begin
+  Self.Sair;
+end;
+
+procedure TConsulta.Excluir;
+begin
+
+end;
+
+procedure TConsulta.FormShow( Sender: TObject );
+begin
+  Panel1.Color := TColor( $89C089 );
+end;
+
+procedure TConsulta.Novo;
+begin
+
+end;
+
+procedure TConsulta.Sair;
+begin
+  Close;
+end;
+
+end.

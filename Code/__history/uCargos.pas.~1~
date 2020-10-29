@@ -1,0 +1,18 @@
+unit uCargos;
+
+interface
+
+uses
+  Classes,
+  SysUtils,
+  UPai,
+  UDepartamento;
+
+type
+  Cargos = class( Pai )
+
+  end;
+
+implementation
+
+end.

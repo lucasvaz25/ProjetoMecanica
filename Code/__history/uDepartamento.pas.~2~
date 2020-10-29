@@ -1,0 +1,20 @@
+unit uDepartamento;
+
+interface
+
+uses
+  Classes,
+  SysUtils,
+  UPai;
+
+type
+  Departamentos = class( Pai )
+  private
+  protected
+  public
+
+  end;
+
+implementation
+
+end.

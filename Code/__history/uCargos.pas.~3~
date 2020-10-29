@@ -1,0 +1,28 @@
+unit uCargos;
+
+interface
+
+uses
+  Classes,
+  SysUtils,
+  UPai,
+  UDepartamento;
+
+type
+  Cargos = class( Pai )
+  private
+  protected
+  public
+    constructor CrieObj;
+    destructor Destrua_se;
+
+    property Cargo: string;
+    property Obs: string;
+    property ODepartamento: Departamentos;
+
+    function Clone: Cargos;
+  end;
+
+implementation
+
+end.

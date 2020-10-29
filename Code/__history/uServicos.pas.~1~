@@ -1,0 +1,20 @@
+unit uServicos;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+  UPai;
+
+type
+  Servicos = class( Pai )
+  private
+  protected
+  public
+
+  end;
+
+implementation
+
+end.

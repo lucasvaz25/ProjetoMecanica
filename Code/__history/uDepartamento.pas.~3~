@@ -1,0 +1,27 @@
+unit uDepartamento;
+
+interface
+
+uses
+  Classes,
+  SysUtils,
+  UPai;
+
+type
+  Departamentos = class( Pai )
+  private
+  protected
+  public
+    constructor CrieObj;
+    destructor Destrua_se;
+
+    property Departamento: string;
+    property Obs: string;
+
+    function Clone: Departamentos;
+
+  end;
+
+implementation
+
+end.

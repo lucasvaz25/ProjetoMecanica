@@ -2,7 +2,6 @@ inherited CadastroFuncionarios: TCadastroFuncionarios
   Caption = 'Cadastro de Funcion'#225'rios'
   ClientHeight = 563
   ClientWidth = 709
-  ExplicitTop = -44
   ExplicitWidth = 725
   ExplicitHeight = 602
   PixelsPerInch = 96
@@ -14,12 +13,10 @@ inherited CadastroFuncionarios: TCadastroFuncionarios
     ExplicitHeight = 563
     inherited lblDataCad: TLabel
       Top = 508
-      ExplicitLeft = 27
       ExplicitTop = 508
     end
     inherited lblDataUltAlt: TLabel
       Top = 508
-      ExplicitLeft = 156
       ExplicitTop = 508
     end
     object lblFuncionario: TLabel [3]
@@ -101,12 +98,10 @@ inherited CadastroFuncionarios: TCadastroFuncionarios
     end
     inherited edtDataCad: TEdit
       Top = 527
-      ExplicitLeft = 27
       ExplicitTop = 527
     end
-    inherited EedtDataUltAlt: TEdit
+    inherited EdtDataUltAlt: TEdit
       Top = 527
-      ExplicitLeft = 156
       ExplicitTop = 527
     end
     inherited btnSalvar: TBitBtn
@@ -154,7 +149,7 @@ inherited CadastroFuncionarios: TCadastroFuncionarios
       Height = 21
       Date = 44131.000000000000000000
       Time = 44131.000000000000000000
-      MaxDate = 44131.999988425930000000
+      MaxDate = 44131.999988425920000000
       MinDate = 2.000000000000000000
       TabOrder = 8
     end
@@ -250,6 +245,10 @@ inherited CadastroFuncionarios: TCadastroFuncionarios
       TabOrder = 18
       object tabInfo: TTabSheet
         Caption = 'Informa'#231#245'es Adicionais'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Panel2: TPanel
           Left = 0
           Top = 0
@@ -416,7 +415,6 @@ inherited CadastroFuncionarios: TCadastroFuncionarios
       object tabServicos: TTabSheet
         Caption = 'Servi'#231'os'
         ImageIndex = 1
-        ExplicitLeft = 2
         object Panel3: TPanel
           Left = 0
           Top = 0
@@ -426,10 +424,6 @@ inherited CadastroFuncionarios: TCadastroFuncionarios
           Color = clSilver
           ParentBackground = False
           TabOrder = 0
-          ExplicitLeft = 288
-          ExplicitTop = 72
-          ExplicitWidth = 185
-          ExplicitHeight = 41
           object lblServicos: TLabel
             Left = 21
             Top = 8

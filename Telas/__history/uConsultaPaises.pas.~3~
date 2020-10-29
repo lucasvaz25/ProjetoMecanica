@@ -1,0 +1,45 @@
+unit uConsultaPaises;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  UConsulta,
+  Data.DB,
+  Vcl.StdCtrls,
+  Vcl.Buttons,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  Vcl.ExtCtrls;
+
+type
+  TConsultaPaises = class( TConsulta )
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure Novo; virtual;
+    procedure Alterar; virtual;
+    procedure Excluir; virtual;
+    procedure Sair; virtual;
+    procedure Pesquisar; Virtual;
+    procedure SetFormCadastro( PObj: TObject ); Virtual;
+    procedure ConhecaObj( PObj: TObject; PCtrl: TObject ); Virtual;
+  end;
+
+var
+  ConsultaPaises: TConsultaPaises;
+
+implementation
+
+{$R *.dfm}
+
+end.

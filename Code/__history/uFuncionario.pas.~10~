@@ -1,0 +1,99 @@
+unit uFuncionario;
+
+interface
+
+uses
+  Classes,
+  SysUtils,
+  UPessoas;
+
+type
+  Funcionarios = class( Pessoas )
+  private
+    FDtAdmissao: TDateTime;
+    FDtDemissao: TDateTime;
+    FSalario: Currency;
+    FCNH: string;
+    procedure SetDtAdmissao( const Value: TDateTime );
+    procedure SetDtDemissao( const Value: TDateTime );
+    procedure SetSalario( const Value: Currency );
+    procedure SetCNH( const Value: string );
+
+  protected
+
+  public
+    constructor CrieObj;
+    destructor Destrua_se;
+
+    property DtAdmissao: TDateTime read FDtAdmissao write SetDtAdmissao;
+    property DtDemissao: TDateTime read FDtDemissao write SetDtDemissao;
+    property Salario: Currency read FSalario write SetSalario;
+    property CNH: string read FCNH write SetCNH;
+
+    function Clone: Funcionarios;
+  end;
+
+implementation
+
+{ Funcionarios }
+
+function Funcionarios.Clone: Funcionarios;
+begin
+
+  Result := Funcionarios.CrieObj;
+  Result.SetCodigo( Codigo );
+  Result.Pessoa      := Pessoa;
+  Result.Sexo        := Sexo;
+  Result.Data_Nasc   := Data_Nasc;
+  Result.CPF         := CPF;
+  Result.RG          := RG;
+  Result.Endereco    := Endereco;
+  Result.Numero      := Numero;
+  Result.Complemento := Complemento;
+  Result.Bairro      := Bairro;
+  Result.CEP         := CEP;
+  Result.ACidade     := ACidade.Clone;
+  Result.DtAdmissao  := DtAdmissao;
+  Result.SetDataCad( DataCad );
+  Result.SetDataUltAlt( DataUltAlt );
+end;
+
+constructor Funcionarios.CrieObj;
+begin
+  inherited;
+  // Cargo        := Cargos.CrieObj;
+
+  DtAdmissao := '';
+  DtDemissao := '';
+  CNH        := '';
+
+end;
+
+destructor Funcionarios.Destrua_se;
+begin
+  // Cargo.Destrua_se;
+
+  inherited;
+end;
+
+procedure Funcionarios.SetCNH( const Value: string );
+begin
+  FCNH := Value;
+end;
+
+procedure Funcionarios.SetDtAdmissao( const Value: TDateTime );
+begin
+  FDtAdmissao := Value;
+end;
+
+procedure Funcionarios.SetDtDemissao( const Value: TDateTime );
+begin
+  FDtDemissao := Value;
+end;
+
+procedure Funcionarios.SetSalario( const Value: Currency );
+begin
+  FSalario := Value;
+end;
+
+end.

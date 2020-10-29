@@ -77,6 +77,7 @@ object Consulta: TConsulta
         FFFF00FFFF00FFFF00FFFF00FFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAFAF
         AFAFAFAFAFAFAFAFADADADFF00FFFF00FFFF00FFFF00FFFF00FF}
       TabOrder = 2
+      OnClick = btnPesquisarClick
     end
     object btnNovo: TBitBtn
       Left = 168
@@ -112,6 +113,7 @@ object Consulta: TConsulta
         17BF6F17FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       TabOrder = 3
+      OnClick = btnNovoClick
     end
     object btnAlterar: TBitBtn
       Left = 279
@@ -147,8 +149,9 @@ object Consulta: TConsulta
         C30A0A9AFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FF4B4BAAFF00FFFF00FFFF00FF}
       TabOrder = 4
+      OnClick = btnAlterarClick
     end
-    object BitBtn3: TBitBtn
+    object btnExcluir: TBitBtn
       Left = 392
       Top = 320
       Width = 75
@@ -182,6 +185,7 @@ object Consulta: TConsulta
         B53535B0343495FF00FFFF00FFFF00FF9796B68080C0FF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FF3636933E3E9AFF00FFFF00FF}
       TabOrder = 5
+      OnClick = btnExcluirClick
     end
     object btnSair: TBitBtn
       Left = 502

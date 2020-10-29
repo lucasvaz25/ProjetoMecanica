@@ -9,7 +9,7 @@ inherited CadastroDepartamentos: TCadastroDepartamentos
   inherited Panel1: TPanel
     Width = 612
     Height = 350
-    ExplicitWidth = 637
+    ExplicitWidth = 612
     ExplicitHeight = 350
     inherited lblDataCad: TLabel
       Left = 18
@@ -43,7 +43,7 @@ inherited CadastroDepartamentos: TCadastroDepartamentos
       ExplicitLeft = 18
       ExplicitTop = 314
     end
-    inherited EedtDataUltAlt: TEdit
+    inherited EdtDataUltAlt: TEdit
       Left = 147
       Top = 314
       ExplicitLeft = 147
@@ -52,13 +52,13 @@ inherited CadastroDepartamentos: TCadastroDepartamentos
     inherited btnSalvar: TBitBtn
       Left = 353
       Top = 308
-      ExplicitLeft = 378
+      ExplicitLeft = 353
       ExplicitTop = 308
     end
     inherited btnSair: TBitBtn
       Left = 497
       Top = 308
-      ExplicitLeft = 522
+      ExplicitLeft = 497
       ExplicitTop = 308
     end
     inherited btnPesquisarCad: TBitBtn

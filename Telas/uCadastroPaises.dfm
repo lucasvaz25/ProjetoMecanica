@@ -9,13 +9,19 @@ inherited CadastroPaises: TCadastroPaises
   inherited Panel1: TPanel
     Width = 636
     Height = 197
+    ExplicitWidth = 636
+    ExplicitHeight = 197
     inherited lblDataCad: TLabel
       Left = 17
       Top = 142
+      ExplicitLeft = 17
+      ExplicitTop = 142
     end
     inherited lblDataUltAlt: TLabel
       Left = 146
       Top = 142
+      ExplicitLeft = 146
+      ExplicitTop = 142
     end
     object lblPais: TLabel [3]
       Left = 20
@@ -41,18 +47,29 @@ inherited CadastroPaises: TCadastroPaises
     inherited edtDataCad: TEdit
       Left = 17
       Top = 161
+      ExplicitLeft = 17
+      ExplicitTop = 161
     end
-    inherited EedtDataUltAlt: TEdit
+    inherited EdtDataUltAlt: TEdit
       Left = 146
       Top = 161
+      ExplicitLeft = 146
+      ExplicitTop = 161
     end
     inherited btnSalvar: TBitBtn
       Left = 377
       Top = 155
+      ExplicitLeft = 377
+      ExplicitTop = 155
     end
     inherited btnSair: TBitBtn
       Left = 521
       Top = 155
+      ExplicitLeft = 521
+      ExplicitTop = 155
+    end
+    inherited btnPesquisarCad: TBitBtn
+      TabOrder = 8
     end
     object edtPais: TEdit
       Left = 17

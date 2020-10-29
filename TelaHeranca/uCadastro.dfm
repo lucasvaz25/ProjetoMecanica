@@ -24,7 +24,6 @@ object Cadastro: TCadastro
     Color = clAppWorkSpace
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 635
     DesignSize = (
       646
       452)
@@ -69,7 +68,7 @@ object Cadastro: TCadastro
       ReadOnly = True
       TabOrder = 1
     end
-    object EedtDataUltAlt: TEdit
+    object EdtDataUltAlt: TEdit
       Left = 156
       Top = 416
       Width = 81
@@ -114,6 +113,7 @@ object Cadastro: TCadastro
         B46B3B3B6B3B3BFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       TabOrder = 3
+      OnClick = btnSalvarClick
     end
     object btnSair: TBitBtn
       Left = 551
@@ -150,6 +150,7 @@ object Cadastro: TCadastro
         3B6B3B3BFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       TabOrder = 4
+      OnClick = btnSairClick
     end
     object btnPesquisarCad: TBitBtn
       Left = 464

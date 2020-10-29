@@ -6,13 +6,6 @@ inherited CadastroCargos: TCadastroCargos
   TextHeight = 13
   inherited Panel1: TPanel
     Width = 630
-    ExplicitWidth = 646
-    inherited lblDataCad: TLabel
-      ExplicitLeft = 27
-    end
-    inherited lblDataUltAlt: TLabel
-      ExplicitLeft = 156
-    end
     object lblObs: TLabel [3]
       Left = 21
       Top = 225
@@ -41,17 +34,13 @@ inherited CadastroCargos: TCadastroCargos
       Height = 13
       Caption = 'Cargo'
     end
-    inherited edtDataCad: TEdit
-      ExplicitLeft = 27
-    end
-    inherited EedtDataUltAlt: TEdit
-      ExplicitLeft = 156
-    end
     inherited btnSalvar: TBitBtn
       Left = 391
+      ExplicitLeft = 391
     end
     inherited btnSair: TBitBtn
       Left = 535
+      ExplicitLeft = 535
     end
     inherited btnPesquisarCad: TBitBtn
       Left = 535

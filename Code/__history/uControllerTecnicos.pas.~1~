@@ -1,0 +1,19 @@
+unit uControllerTecnicos;
+
+interface
+
+uses
+  Data.DB,
+  UController;
+
+type
+  ControllerTecnicos = class( Controller )
+  private
+  protected
+  public
+
+  end;
+
+implementation
+
+end.

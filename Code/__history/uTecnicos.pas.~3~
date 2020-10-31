@@ -1,0 +1,21 @@
+unit uTecnicos;
+
+interface
+
+uses
+  Classes,
+  SysUtils,
+  UFuncionario,
+  UServicos;
+
+type
+  Tecnicos = class( Funcionarios )
+  private
+  protected
+  public
+
+  end;
+
+implementation
+
+end.

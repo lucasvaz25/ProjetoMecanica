@@ -37,7 +37,9 @@ uses
   uControllerCargos in 'Code\uControllerCargos.pas',
   uControllerDepartamentos in 'Code\uControllerDepartamentos.pas',
   uControllerFuncionarios in 'Code\uControllerFuncionarios.pas',
-  uControllerServicos in 'Code\uControllerServicos.pas';
+  uControllerServicos in 'Code\uControllerServicos.pas',
+  uTecnicos in 'Code\uTecnicos.pas',
+  uControllerTecnicos in 'Code\uControllerTecnicos.pas';
 
 {$R *.res}
 

@@ -46,8 +46,9 @@ end;
 
 destructor Estados.Destrua_se;
 begin
+  if Assigned( OPais ) then
+    OPais.Destrua_se;
   inherited;
-  OPais.Destrua_se;
 end;
 
 constructor Estados.CrieInit( MCodigo: Integer; UmPais: Paises;

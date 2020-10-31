@@ -1,0 +1,28 @@
+unit uTecnicos;
+
+interface
+
+uses
+  Classes,
+  SysUtils,
+  UFuncionario,
+  UServicos,
+  System.Generics.Collections;
+
+type
+  Tecnicos = class( Funcionarios )
+  private
+  protected
+  public
+    constructor CrieObj;
+    destructor Destrua_se;
+
+    property DtVencCNH: TDateTime;
+    property ListaServicos: TObjectList<Servicos>;
+
+    function Clone: Tecnicos;
+  end;
+
+implementation
+
+end.

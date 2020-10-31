@@ -69,18 +69,18 @@ end;
 constructor Funcionarios.CrieObj;
 begin
   inherited;
-  OCargo := Cargos.CrieObj;
 
   DtAdmissao := StrToDate( '01/01/1900' );
   DtDemissao := StrToDate( '01/01/1900' );;
   CNH        := '';
   Salario    := 0;
-
+  OCargo     := Cargos.CrieObj;
 end;
 
 destructor Funcionarios.Destrua_se;
 begin
-  OCargo.Destrua_se;
+  if Assigned( OCargo ) then
+    OCargo.Destrua_se;
   inherited;
 end;
 

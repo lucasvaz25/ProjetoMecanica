@@ -78,6 +78,7 @@ inherited CadastroEstados: TCadastroEstados
     inherited btnPesquisarCad: TBitBtn
       Left = 521
       Top = 134
+      OnClick = btnPesquisarCadClick
       ExplicitLeft = 521
       ExplicitTop = 134
     end

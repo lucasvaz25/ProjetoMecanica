@@ -86,7 +86,7 @@ begin
   AConsultaDepartamentos.SetFormCadastro( OCadastroDepartamentos );
   AConsultaServicos.SetFormCadastro( OCadastroServicos );
 
-  // OCadastroEstados.SetConsultaPaises( AConsultaPaises );
+  OCadastroEstados.SetFormConsulta( AConsultaPaises );
   // OCadastroCidades.SetConsultaEstados( AConsultaEstados );
 end;
 

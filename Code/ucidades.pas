@@ -1,7 +1,5 @@
 unit uCidades;
 
-
-
 interface
 
 uses
@@ -51,8 +49,9 @@ end;
 
 destructor Cidades.Destrua_se;
 begin
+  if Assigned( OEstado ) then
+    OEstado.Destrua_se;
   inherited;
-  OEstado.Destrua_se;
 end;
 
 constructor Cidades.CrieInit( MCodigo: Integer; UmEstado: Estados; MCidade,

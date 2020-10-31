@@ -1,0 +1,55 @@
+unit uCadastroEstados;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  UCadastro,
+  Vcl.StdCtrls,
+  Vcl.Buttons,
+  Vcl.ExtCtrls,
+
+  Uestados,
+  UControllerEstados,
+  UConsultaPaises;
+
+type
+  TCadastroEstados = class( TCadastro )
+    EdtEstado: TEdit;
+    LblEstado: TLabel;
+    EdtUF: TEdit;
+    LblUF: TLabel;
+    EdtCodPais: TEdit;
+    LblCodPais: TLabel;
+    EdtPais: TEdit;
+    LblPais: TLabel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure Salvar; Override;
+    procedure Sair; Override;
+    procedure LimparEdt; Override;
+    procedure CarregaEdt; Override;
+    procedure BloqueiEdt; Override;
+    procedure DesbloqueiaEdt; Override;
+    procedure ConhecaObj( PObj: TObject; PCtrl: TObject ); Override;
+    procedure SetConsultaPaises( PConsultaPais: TObject );
+  end;
+
+var
+  CadastroEstados: TCadastroEstados;
+
+implementation
+
+{$R *.dfm}
+
+end.

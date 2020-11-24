@@ -1,0 +1,67 @@
+unit uControllerCargos;
+
+interface
+
+uses
+  Data.DB,
+  UController;
+
+type
+  ControllerCargos = class( Controller )
+  private
+  protected
+  public
+    constructor CrieObj; override;
+    destructor Destrua_se; override;
+
+    procedure Salvar( PObj: Tobject ); override;
+    procedure Excluir( PObj: TObject ); override;
+    function Pesquisar( PChave: String ): string; override;
+    function Carregar( PObj: TObject ): string; override;
+    function GetDS: TDataSource; override;
+  end;
+
+implementation
+
+{ ControllerCargos }
+
+function ControllerCargos.Carregar(PObj: TObject): string;
+begin
+
+end;
+
+constructor ControllerCargos.CrieObj;
+begin
+  inherited;
+
+end;
+
+destructor ControllerCargos.Destrua_se;
+begin
+
+  inherited;
+end;
+
+procedure ControllerCargos.Excluir(PObj: TObject);
+begin
+  inherited;
+
+end;
+
+function ControllerCargos.GetDS: TDataSource;
+begin
+
+end;
+
+function ControllerCargos.Pesquisar(PChave: String): string;
+begin
+
+end;
+
+procedure ControllerCargos.Salvar(PObj: Tobject);
+begin
+  inherited;
+
+end;
+
+end.

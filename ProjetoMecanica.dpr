@@ -39,7 +39,9 @@ uses
   uControllerFuncionarios in 'Code\uControllerFuncionarios.pas',
   uControllerServicos in 'Code\uControllerServicos.pas',
   uTecnicos in 'Code\uTecnicos.pas',
-  uControllerTecnicos in 'Code\uControllerTecnicos.pas';
+  uControllerTecnicos in 'Code\uControllerTecnicos.pas',
+  uDM in 'uDM.pas' {DM: TDataModule},
+  uDaoPaises in 'Code\uDaoPaises.pas';
 
 {$R *.res}
 
@@ -47,5 +49,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TGerente, Gerente);
+  Application.CreateForm(TDM, DM);
   Application.Run;
 end.

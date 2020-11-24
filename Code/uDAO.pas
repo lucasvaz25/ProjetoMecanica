@@ -3,18 +3,20 @@ unit uDAO;
 interface
 
 uses
-  Data.DB;
+  Data.DB,
+  UDM;
 
 type
   DAO = class
   private
   protected
+    UmDM: TDM;
   public
     constructor CrieObj; virtual;
     destructor Destrua_se; virtual;
 
-    procedure Salvar( PObj: Tobject ); virtual;
-    procedure Excluir( PObj: TObject ); virtual;
+    function Salvar( PObj: Tobject ): string; virtual;
+    function Excluir( PObj: TObject ): string; virtual;
     procedure SetDM( PObj: TObject ); virtual;
     function Pesquisar( PChave: String ): string; virtual;
     function Carregar( PObj: TObject ): string; virtual;
@@ -40,7 +42,7 @@ begin
 
 end;
 
-procedure DAO.Excluir( PObj: TObject );
+function DAO.Excluir( PObj: TObject ): string;
 begin
 
 end;
@@ -55,14 +57,22 @@ begin
 
 end;
 
-procedure DAO.Salvar( PObj: Tobject );
+function DAO.Salvar( PObj: Tobject ): string;
 begin
 
 end;
 
 procedure DAO.SetDM( PObj: TObject );
 begin
+  UmDM := TDM( PObj );
+  try
+    if not UmDM.Conexao.Connected then
+      UmDM.Conexao.Connected := True;
+    if not UmDM.Trans.Active then
+      UmDM.Conexao.Open( );
+  except
 
+  end;
 end;
 
 end.

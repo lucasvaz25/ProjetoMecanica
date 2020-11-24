@@ -72,6 +72,8 @@ end;
 procedure TConsultaFuncionarios.Novo;
 begin
   inherited;
+  OCadastroFuncionario.ConhecaObj( OFuncionario, ACtrlFuncionario );
+  OCadastroFuncionario.LimparEdt;
   OCadastroFuncionario.ShowModal;
 end;
 

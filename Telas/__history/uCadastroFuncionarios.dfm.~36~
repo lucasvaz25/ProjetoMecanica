@@ -1,0 +1,557 @@
+inherited CadastroFuncionarios: TCadastroFuncionarios
+  Caption = 'Cadastro de Funcion'#225'rios'
+  ClientHeight = 563
+  ClientWidth = 709
+  ExplicitWidth = 725
+  ExplicitHeight = 602
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited Panel1: TPanel
+    Width = 709
+    Height = 563
+    ExplicitWidth = 709
+    ExplicitHeight = 563
+    inherited lblDataCad: TLabel
+      Top = 508
+      ExplicitTop = 508
+    end
+    inherited lblDataUltAlt: TLabel
+      Top = 508
+      ExplicitTop = 508
+    end
+    object lblFuncionario: TLabel [3]
+      Left = 27
+      Top = 66
+      Width = 55
+      Height = 13
+      Caption = 'Funcion'#225'rio'
+    end
+    object lblDtNasc: TLabel [4]
+      Left = 27
+      Top = 114
+      Width = 73
+      Height = 13
+      Caption = 'Dt. Nascimento'
+    end
+    object lblCPF: TLabel [5]
+      Left = 141
+      Top = 114
+      Width = 19
+      Height = 13
+      Caption = 'CPF'
+    end
+    object lblRG: TLabel [6]
+      Left = 236
+      Top = 114
+      Width = 14
+      Height = 13
+      Caption = 'RG'
+    end
+    object lblEndereco: TLabel [7]
+      Left = 27
+      Top = 162
+      Width = 45
+      Height = 13
+      Caption = 'Endere'#231'o'
+    end
+    object lblNum: TLabel [8]
+      Left = 559
+      Top = 162
+      Width = 21
+      Height = 13
+      Caption = 'Nro.'
+    end
+    object lblBairro: TLabel [9]
+      Left = 27
+      Top = 214
+      Width = 28
+      Height = 13
+      Caption = 'Bairro'
+    end
+    object lblComplemento: TLabel [10]
+      Left = 564
+      Top = 214
+      Width = 65
+      Height = 13
+      Caption = 'Complemento'
+    end
+    object lblCEP: TLabel [11]
+      Left = 627
+      Top = 162
+      Width = 19
+      Height = 13
+      Caption = 'CEP'
+    end
+    object lblCodCidade: TLabel [12]
+      Left = 27
+      Top = 259
+      Width = 59
+      Height = 13
+      Caption = 'C'#243'd. Cidade'
+    end
+    object lblCidade: TLabel [13]
+      Left = 101
+      Top = 259
+      Width = 33
+      Height = 13
+      Caption = 'Cidade'
+    end
+    inherited edtDataCad: TEdit
+      Top = 527
+      ExplicitTop = 527
+    end
+    inherited EdtDataUltAlt: TEdit
+      Top = 527
+      ExplicitTop = 527
+    end
+    inherited btnSalvar: TBitBtn
+      Left = 470
+      Top = 521
+      ExplicitLeft = 470
+      ExplicitTop = 521
+    end
+    inherited btnSair: TBitBtn
+      Left = 614
+      Top = 521
+      ExplicitLeft = 614
+      ExplicitTop = 521
+    end
+    inherited btnPesquisarCad: TBitBtn
+      Left = 614
+      Top = 270
+      OnClick = btnPesquisarCadClick
+      ExplicitLeft = 614
+      ExplicitTop = 270
+    end
+    object edtFuncionario: TEdit
+      Left = 25
+      Top = 80
+      Width = 564
+      Height = 21
+      CharCase = ecUpperCase
+      MaxLength = 50
+      TabOrder = 6
+    end
+    object rgSexo: TRadioGroup
+      Left = 609
+      Top = 72
+      Width = 80
+      Height = 55
+      Caption = 'Sexo'
+      Items.Strings = (
+        'Masculino'
+        'Feminino')
+      TabOrder = 7
+    end
+    object edtDtNasc: TDateTimePicker
+      Left = 27
+      Top = 128
+      Width = 94
+      Height = 21
+      Date = 44131.000000000000000000
+      Time = 44131.000000000000000000
+      MaxDate = 44131.999988425920000000
+      MinDate = 2.000000000000000000
+      TabOrder = 8
+    end
+    object edtCPF: TMaskEdit
+      Left = 136
+      Top = 128
+      Width = 83
+      Height = 21
+      EditMask = '#########-##'
+      MaxLength = 12
+      TabOrder = 9
+      Text = '         -  '
+    end
+    object edtRG: TEdit
+      Left = 234
+      Top = 128
+      Width = 88
+      Height = 21
+      CharCase = ecUpperCase
+      MaxLength = 13
+      TabOrder = 10
+    end
+    object edtEndereco: TEdit
+      Left = 25
+      Top = 176
+      Width = 520
+      Height = 21
+      CharCase = ecUpperCase
+      MaxLength = 50
+      TabOrder = 11
+    end
+    object edtNumero: TEdit
+      Left = 557
+      Top = 176
+      Width = 58
+      Height = 21
+      CharCase = ecUpperCase
+      MaxLength = 5
+      TabOrder = 12
+    end
+    object edtBairro: TEdit
+      Left = 25
+      Top = 228
+      Width = 520
+      Height = 21
+      CharCase = ecUpperCase
+      MaxLength = 40
+      TabOrder = 13
+    end
+    object edtComplemento: TEdit
+      Left = 559
+      Top = 228
+      Width = 130
+      Height = 21
+      CharCase = ecUpperCase
+      MaxLength = 15
+      TabOrder = 14
+    end
+    object edtCEP: TMaskEdit
+      Left = 624
+      Top = 176
+      Width = 64
+      Height = 21
+      CharCase = ecUpperCase
+      EditMask = '#####-###'
+      MaxLength = 9
+      TabOrder = 15
+      Text = '     -   '
+    end
+    object edtCodCidade: TEdit
+      Left = 25
+      Top = 272
+      Width = 61
+      Height = 21
+      CharCase = ecUpperCase
+      TabOrder = 16
+    end
+    object edtCidade: TEdit
+      Left = 96
+      Top = 272
+      Width = 507
+      Height = 21
+      CharCase = ecUpperCase
+      MaxLength = 50
+      TabOrder = 17
+    end
+    object PageControl1: TPageControl
+      Left = 26
+      Top = 312
+      Width = 663
+      Height = 177
+      ActivePage = tabInfo
+      TabOrder = 18
+      object tabInfo: TTabSheet
+        Caption = 'Informa'#231#245'es Adicionais'
+        object Panel2: TPanel
+          Left = 0
+          Top = 0
+          Width = 655
+          Height = 149
+          Align = alClient
+          Color = clBtnShadow
+          ParentBackground = False
+          TabOrder = 0
+          object lblCargo: TLabel
+            Left = 80
+            Top = 10
+            Width = 29
+            Height = 13
+            Caption = 'Cargo'
+          end
+          object lblCodCargo: TLabel
+            Left = 12
+            Top = 10
+            Width = 55
+            Height = 13
+            Caption = 'C'#243'd. Cargo'
+          end
+          object lblDtAdmissao: TLabel
+            Left = 12
+            Top = 58
+            Width = 63
+            Height = 13
+            Caption = 'Dt. Admiss'#227'o'
+          end
+          object lblDtDemissao: TLabel
+            Left = 126
+            Top = 58
+            Width = 63
+            Height = 13
+            Caption = 'Dt. Demiss'#227'o'
+          end
+          object lblSalario: TLabel
+            Left = 245
+            Top = 58
+            Width = 32
+            Height = 13
+            Caption = 'Sal'#225'rio'
+          end
+          object lblCNH: TLabel
+            Left = 12
+            Top = 106
+            Width = 21
+            Height = 13
+            Caption = 'CNH'
+          end
+          object lblDtValCNH: TLabel
+            Left = 95
+            Top = 106
+            Width = 82
+            Height = 13
+            Caption = 'Dt. Validade CNH'
+          end
+          object edtCargo: TEdit
+            Left = 77
+            Top = 24
+            Width = 439
+            Height = 21
+            CharCase = ecUpperCase
+            MaxLength = 50
+            TabOrder = 0
+          end
+          object edtCodCargo: TEdit
+            Left = 8
+            Top = 24
+            Width = 61
+            Height = 21
+            CharCase = ecUpperCase
+            TabOrder = 1
+          end
+          object edtDtAdmissao: TDateTimePicker
+            Left = 8
+            Top = 72
+            Width = 97
+            Height = 21
+            Date = 44132.000000000000000000
+            Time = 44132.000000000000000000
+            MinDate = 2.000000000000000000
+            TabOrder = 2
+          end
+          object edtDtDemissao: TDateTimePicker
+            Left = 122
+            Top = 72
+            Width = 99
+            Height = 21
+            Date = 44132.000000000000000000
+            Time = 44132.000000000000000000
+            MinDate = 2.000000000000000000
+            TabOrder = 3
+          end
+          object edtSalario: TMaskEdit
+            Left = 240
+            Top = 72
+            Width = 81
+            Height = 21
+            EditMask = 'R$ ####,##'
+            MaxLength = 10
+            TabOrder = 4
+            Text = 'R$     ,  '
+          end
+          object edtCNH: TMaskEdit
+            Left = 8
+            Top = 120
+            Width = 71
+            Height = 21
+            CharCase = ecUpperCase
+            EditMask = '###########'
+            MaxLength = 11
+            TabOrder = 5
+            Text = '           '
+          end
+          object edtDtValidadeCNH: TDateTimePicker
+            Left = 91
+            Top = 120
+            Width = 99
+            Height = 21
+            Date = 44132.000000000000000000
+            Time = 44132.000000000000000000
+            MaxDate = 73051.999988425930000000
+            TabOrder = 6
+          end
+          object btnPesquisarCargo: TBitBtn
+            Left = 530
+            Top = 22
+            Width = 75
+            Height = 25
+            Caption = '&Pesquisar'
+            Glyph.Data = {
+              36030000424D3603000000000000360000002800000010000000100000000100
+              18000000000000030000120B0000120B00000000000000000000FF00FFFF00FF
+              FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+              FF7E7E7E7E7E7EFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+              00FFFF00FFFF00FFFF00FFFF00FF787878C4C4C47E7E7EFF00FFFF00FFFF00FF
+              FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF757575B0B1
+              B17D7D7D898A8AFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+              00FFFF00FFFF00FF757575999A9A868686878888FF00FFFF00FFFF00FFFF00FF
+              FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF7575758989898C8C8C8081
+              81FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF7B77767B77767B
+              77767575757A7B7B8F8F8F797A7AFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+              FF00FF848484848484BAB8BACFCECEB7B5B6939092807F80707070FF00FFFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FF928C86C4C0BCFEFCF8FEFCFAFFFCFAFF
+              FCFBFBFAF8B1ACADA49F9FFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+              928C86FEF3E7FEF7EFFEF7EFFEF7F0FEF8F0FEF8F2FAF4EEA49F9F747374FF00
+              FFFF00FFFF00FFFF00FFFF00FF655F5CD4C4B2FCEFE0FCF2E5FCF2E6FCF3E6FC
+              F3E7FEF3E7FEF3E9D3CAC5747374FF00FFFF00FFFF00FFFF00FFFF00FF655F5C
+              E1CAB0FCEAD5FCEDDCFCEEDCFCEEDDFCEEDDFCEEDEFCEEDDDED1C6747374FF00
+              FFFF00FFFF00FFFF00FFFF00FF655F5CCEB497FAE2C7FBE5CCFBE5CCFBE5CEFB
+              E6CFFBE7D1FBEAD5D7C9BD747374FF00FFFF00FFFF00FFFF00FFFF00FF655F5C
+              8C7B69FAE0C2FBE9D3FBE9D3FBE9D3FBE9D3FBE9D3F8E6D17F7B7BFF00FFFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FF655F5CB49E87FBE9D3FBE9D3FBE9D3FB
+              E9D3F8E6D1C6B8AB7F7B7BFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+              FF00FF6C686597897BCABAA6D9C9B4C9B8A67F7B7B7F7B7BFF00FFFF00FFFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF7B77767B77767B77767B
+              7776FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
+            TabOrder = 7
+            OnClick = btnPesquisarCargoClick
+          end
+        end
+      end
+      object tabServicos: TTabSheet
+        Caption = 'Servi'#231'os'
+        ImageIndex = 1
+        object Panel3: TPanel
+          Left = 0
+          Top = 0
+          Width = 655
+          Height = 149
+          Align = alClient
+          Color = clSilver
+          ParentBackground = False
+          TabOrder = 0
+          object lblServicos: TLabel
+            Left = 21
+            Top = 8
+            Width = 40
+            Height = 13
+            Caption = 'Servi'#231'os'
+          end
+          object cbServicos: TDBLookupComboBox
+            Left = 20
+            Top = 23
+            Width = 354
+            Height = 21
+            DataSource = dsLookUp
+            TabOrder = 0
+          end
+          object btnNovoServico: TBitBtn
+            Left = 380
+            Top = 22
+            Width = 41
+            Height = 25
+            Caption = 'Novo'
+            TabOrder = 1
+          end
+          object btnAltServico: TBitBtn
+            Left = 427
+            Top = 22
+            Width = 41
+            Height = 25
+            Caption = 'Editar'
+            TabOrder = 2
+          end
+          object GridServicos: TDBGrid
+            Left = 21
+            Top = 50
+            Width = 553
+            Height = 90
+            DataSource = DsServicos
+            Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+            TabOrder = 3
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -11
+            TitleFont.Name = 'Tahoma'
+            TitleFont.Style = []
+            Columns = <
+              item
+                Expanded = False
+                FieldName = 'Sequencia'
+                Width = 42
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'codServico'
+                Width = 54
+                Visible = True
+              end
+              item
+                Expanded = False
+                FieldName = 'Servico'
+                Width = 426
+                Visible = True
+              end>
+          end
+          object btnAdicionarLista: TBitBtn
+            Left = 475
+            Top = 22
+            Width = 100
+            Height = 25
+            Caption = 'Adicionar '#224' lista'
+            Glyph.Data = {
+              36030000424D3603000000000000360000002800000010000000100000000100
+              18000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0E882E0E882E0E
+              882E0E882E0E882EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFF0E882E07A72F099E2E0B932E0E882EFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0E882E05AF2F08
+              BA29099E2E0E882EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFF0E882E04B62F08B82807A72F0E882EFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0E882E03BB2F09
+              B52605AF2F0E882EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0E882E0E882E
+              0E882E0E882E0E882E188D3616C44009B22504B62F0B922E0C902E0C8E2E0D8C
+              2E0D892E0E882EFFFFFF2A964673E28D68E0845DDD7B53DA7349D66A41CB5D1D
+              B63506B72B04B62F05AF2F07A72F099E2E0B932E0E882EFFFFFF2D97497EE597
+              79D1856ECE7C64CC7459CA6B51C26046C1581EB63507B52807B62807B62A07B7
+              2B099E2E0E882EFFFFFF30984B8AE7A07FE59775E38F6AE0865FDD7D58D27052
+              C36143CB5F17C54103BB2F04B62F05AF2F07A72F0E882EFFFFFF0E882E0E882E
+              0E882E0E882E0E882E0E882E61DE7E5DC56A4CD76D0E882E0E882E0E882E0E88
+              2E0E882E0E882EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0E882E6DE18869
+              C77458DB770E882EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFF0E882E78E49275CA7E63DE800E882EFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0E882E83E69B7F
+              D38A6FE18A0E882EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFF0E882E8FE8A485E69C7BE4930E882EFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0E882E0E882E0E
+              882E0E882E0E882EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+            Layout = blGlyphRight
+            TabOrder = 4
+          end
+        end
+      end
+    end
+  end
+  object dsLookUp: TDataSource
+    Left = 344
+    Top = 520
+  end
+  object DsServicos: TDataSource
+    DataSet = CdsServicos
+    Left = 653
+    Top = 416
+  end
+  object CdsServicos: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    Left = 653
+    Top = 368
+    object CdsServicosSequencia: TIntegerField
+      DisplayLabel = 'Seq.'
+      FieldName = 'Sequencia'
+    end
+    object CdsServicoscodServico: TIntegerField
+      DisplayLabel = 'C'#243'd.'
+      FieldName = 'codServico'
+    end
+    object CdsServicosServico: TStringField
+      DisplayLabel = 'Servi'#231'o'
+      FieldName = 'Servico'
+      Size = 50
+    end
+  end
+end

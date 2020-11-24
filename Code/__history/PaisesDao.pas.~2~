@@ -1,0 +1,18 @@
+unit PaisesDao;
+
+interface
+
+uses
+  Upaises,
+  UControllerPaises,
+  UDAO,
+  Data.DB;
+
+type
+  PaisesDao = class( Dao )
+
+  end;
+
+implementation
+
+end.

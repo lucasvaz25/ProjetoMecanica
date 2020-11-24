@@ -1,0 +1,50 @@
+unit uCadastroDepartamentos;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  UCadastro,
+  Vcl.StdCtrls,
+  Vcl.Buttons,
+  Vcl.ExtCtrls,
+  UDepartamento,
+  UControllerDepartamentos;
+
+type
+  TCadastroDepartamentos = class( TCadastro )
+    EdtDepartamento: TEdit;
+    LblDepartamento: TLabel;
+    LblObs: TLabel;
+    EdtObs: TMemo;
+  private
+    { Private declarations }
+    ODepartamento: Departamentos;
+    ACtrlDepartamento: ControllerDepartamentos;
+  public
+    { Public declarations }
+    procedure Salvar; Override;
+    procedure Sair; Override;
+    procedure LimparEdt; Override;
+    procedure CarregaEdt; Override;
+    procedure BloqueiEdt; Override;
+    procedure DesbloqueiaEdt; Override;
+    procedure ConhecaObj( PObj: TObject; PCtrl: TObject ); Override;
+  end;
+
+var
+  CadastroDepartamentos: TCadastroDepartamentos;
+
+implementation
+
+{$R *.dfm}
+
+end.

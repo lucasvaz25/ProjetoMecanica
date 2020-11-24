@@ -72,6 +72,8 @@ end;
 procedure TConsultaDepartamentos.Novo;
 begin
   inherited;
+  OCadastroDepartamento.ConhecaObj( ODepartamento, ACtrlDepartamento );
+  OCadastroDepartamento.LimparEdt;
   OCadastroDepartamento.ShowModal;
 end;
 

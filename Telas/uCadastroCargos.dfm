@@ -6,6 +6,7 @@ inherited CadastroCargos: TCadastroCargos
   TextHeight = 13
   inherited Panel1: TPanel
     Width = 630
+    ExplicitWidth = 630
     object lblObs: TLabel [3]
       Left = 21
       Top = 225
@@ -45,6 +46,7 @@ inherited CadastroCargos: TCadastroCargos
     inherited btnPesquisarCad: TBitBtn
       Left = 535
       Top = 174
+      OnClick = btnPesquisarCadClick
       ExplicitLeft = 535
       ExplicitTop = 174
     end

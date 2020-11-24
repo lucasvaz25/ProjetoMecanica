@@ -4,21 +4,24 @@ interface
 
 uses
   UController,
+  UDaoPaises,
   Data.DB;
 
 type
   ControllerPaises = class( Controller )
   private
   protected
+    ADaoPais: DaoPaises;
   public
     constructor CrieObj; override;
     destructor Destrua_se; override;
 
-    procedure Salvar( PObj: Tobject ); override;
-    procedure Excluir( PObj: TObject ); override;
+    function Salvar( PObj: Tobject ): string; override;
+    function Excluir( PObj: TObject ): string; override;
     function Pesquisar( PChave: String ): string; override;
     function Carregar( PObj: TObject ): string; override;
     function GetDS: TDataSource; override;
+    procedure SetDM( PObj: TObject ); override;
   end;
 
 implementation
@@ -33,16 +36,16 @@ end;
 constructor ControllerPaises.CrieObj;
 begin
   inherited;
-
+  ADaoPAis := DaoPaises.CrieObj;
 end;
 
 destructor ControllerPaises.Destrua_se;
 begin
-
+  ADaoPais.Destrua_se;
   inherited;
 end;
 
-procedure ControllerPaises.Excluir( PObj: TObject );
+function ControllerPaises.Excluir( PObj: TObject ): string;
 begin
   inherited;
 
@@ -50,18 +53,24 @@ end;
 
 function ControllerPaises.GetDS: TDataSource;
 begin
-
+  Result := ADaoPais.GetDS;
 end;
 
 function ControllerPaises.Pesquisar( PChave: String ): string;
 begin
-
+  Result := ADaoPais.Pesquisar( PChave );
 end;
 
-procedure ControllerPaises.Salvar( PObj: Tobject );
+function ControllerPaises.Salvar( PObj: Tobject ): string;
 begin
   inherited;
 
+end;
+
+procedure ControllerPaises.SetDM( PObj: TObject );
+begin
+  inherited;
+  ADaoPais.SetDM( PObj );
 end;
 
 end.

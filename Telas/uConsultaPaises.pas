@@ -59,8 +59,10 @@ end;
 procedure TConsultaPaises.ConhecaObj( PObj, PCtrl: TObject );
 begin
   inherited;
-  OPais     := Paises( PObj );
-  ACtrlPais := ControllerPaises( PCtrl );
+  OPais                   := Paises( PObj );
+  ACtrlPais               := ControllerPaises( PCtrl );
+  Self.DBGrid1.DataSource := ACtrlPais.GetDS;
+  ACtrlPais.Pesquisar('*');
 end;
 
 procedure TConsultaPaises.Excluir;
@@ -71,8 +73,10 @@ end;
 
 procedure TConsultaPaises.Novo;
 begin
-  inherited;
+  OCadastroPais.ConhecaObj( OPais, ACtrlPais );
+  OCadastroPais.LimparEdt;
   OCadastroPais.ShowModal;
+  inherited;
 end;
 
 procedure TConsultaPaises.Pesquisar;

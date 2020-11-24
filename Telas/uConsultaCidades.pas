@@ -72,6 +72,8 @@ end;
 procedure TConsultaCidades.Novo;
 begin
   inherited;
+  OCadastroCidade.ConhecaObj( ACidade, ACtrlCidade );
+  OCadastroCidade.LimparEdt;
   OCadastroCidade.ShowModal;
 end;
 

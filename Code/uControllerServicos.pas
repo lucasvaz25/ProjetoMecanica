@@ -14,8 +14,8 @@ type
     constructor CrieObj; override;
     destructor Destrua_se; override;
 
-    procedure Salvar( PObj: Tobject ); override;
-    procedure Excluir( PObj: TObject ); override;
+    function Salvar( PObj: Tobject ): string; override;
+    function Excluir( PObj: TObject ): string; override;
     function Pesquisar( PChave: String ): string; override;
     function Carregar( PObj: TObject ): string; override;
     function GetDS: TDataSource; override;
@@ -42,7 +42,7 @@ begin
   inherited;
 end;
 
-procedure ControllerServicos.Excluir( PObj: TObject );
+function ControllerServicos.Excluir( PObj: TObject ): string;
 begin
   inherited;
 
@@ -58,7 +58,7 @@ begin
 
 end;
 
-procedure ControllerServicos.Salvar( PObj: Tobject );
+function ControllerServicos.Salvar( PObj: Tobject ): string;
 begin
   inherited;
 

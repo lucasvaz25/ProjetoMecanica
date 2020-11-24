@@ -9,6 +9,7 @@ inherited CadastroServicos: TCadastroServicos
   inherited Panel1: TPanel
     Width = 543
     Height = 421
+    ExplicitWidth = 543
     ExplicitHeight = 421
     inherited lblDataCad: TLabel
       Top = 366

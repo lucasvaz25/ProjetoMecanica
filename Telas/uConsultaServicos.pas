@@ -72,6 +72,8 @@ end;
 procedure TConsultaServicos.Novo;
 begin
   inherited;
+  OCadastroServico.ConhecaObj( OServico, ACtrlServico );
+  OCadastroServico.LimparEdt;
   OCadastroServico.ShowModal;
 end;
 

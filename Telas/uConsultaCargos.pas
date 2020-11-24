@@ -72,6 +72,8 @@ end;
 procedure TConsultaCargos.Novo;
 begin
   inherited;
+  OCadastroCargo.ConhecaObj( OCargo, ACtrlCargo );
+  OCadastroCargo.LimparEdt;
   OCadastroCargo.ShowModal;
 end;
 

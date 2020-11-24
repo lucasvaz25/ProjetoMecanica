@@ -1,0 +1,65 @@
+unit UController;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+  Data.DB;
+
+type
+  Controller = class
+  private
+  protected
+  public
+    constructor CrieObj; virtual;
+    destructor Destrua_se; virtual;
+
+    function Salvar( PObj: Tobject ): string; virtual;
+    function Excluir( PObj: TObject ): string; virtual;
+    function Pesquisar( PChave: String ): string; virtual;
+    function Carregar( PObj: TObject ): string; virtual;
+    function GetDS: TDataSource; virtual;
+
+  end;
+
+implementation
+
+{ Controller }
+
+function Controller.Carregar( PObj: TObject ): string;
+begin
+
+end;
+
+constructor Controller.CrieObj;
+begin
+
+end;
+
+destructor Controller.Destrua_se;
+begin
+
+end;
+
+function Controller.Excluir( PObj: TObject ): string;
+begin
+
+end;
+
+function Controller.GetDS: TDataSource;
+begin
+
+end;
+
+function Controller.Pesquisar( PChave: String ): string;
+begin
+
+end;
+
+procedure Controller.Salvar( PObj: Tobject );
+begin
+
+end;
+
+end.

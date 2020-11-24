@@ -1,0 +1,29 @@
+unit uDaoPaises;
+
+interface
+
+uses
+  Upaises,
+  UControllerPaises,
+  UDAO,
+  Data.DB;
+
+type
+  DaoPaises = class( Dao )
+  private
+  protected
+  public
+    constructor CrieObj; override;
+    destructor Destrua_se; override;
+
+    function Salvar( PObj: Tobject ): string; override;
+    function Excluir( PObj: TObject ): string; override;
+    function Pesquisar( PChave: String ): string; override;
+    function Carregar( PObj: TObject ): string; override;
+    function GetDS: TDataSource; override;
+    procedure SetDM( PObj: TObject ); override;
+  end;
+
+implementation
+
+end.

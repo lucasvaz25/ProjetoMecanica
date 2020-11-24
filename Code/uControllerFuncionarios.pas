@@ -4,21 +4,29 @@ interface
 
 uses
   Data.DB,
-  UController;
+  UController,
+  UControllerCargos,
+  UControllerCidades;
 
 type
   ControllerFuncionarios = class( Controller )
   private
   protected
+    ACtrlCidade: ControllerCidades;
+    ACtrlCargo: ControllerCargos;
   public
     constructor CrieObj; override;
     destructor Destrua_se; override;
 
-    procedure Salvar( PObj: Tobject ); override;
-    procedure Excluir( PObj: TObject ); override;
+    function Salvar( PObj: Tobject ): string; override;
+    function Excluir( PObj: TObject ): string; override;
     function Pesquisar( PChave: String ): string; override;
     function Carregar( PObj: TObject ): string; override;
     function GetDS: TDataSource; override;
+    function GetCtrlCargo: TObject;
+    function GetCtrlCidade: TObject;
+    procedure SetCtrlCargo( PCtrlCargo: TObject );
+    procedure SetCtrlCidade( PCtrlCidade: TObject );
   end;
 
 implementation
@@ -42,10 +50,20 @@ begin
   inherited;
 end;
 
-procedure ControllerFuncionarios.Excluir( PObj: TObject );
+function ControllerFuncionarios.Excluir( PObj: TObject ): string;
 begin
   inherited;
 
+end;
+
+function ControllerFuncionarios.GetCtrlCargo: TObject;
+begin
+  Result := ACtrlCargo;
+end;
+
+function ControllerFuncionarios.GetCtrlCidade: TObject;
+begin
+  Result := ACtrlCidade;
 end;
 
 function ControllerFuncionarios.GetDS: TDataSource;
@@ -58,10 +76,20 @@ begin
 
 end;
 
-procedure ControllerFuncionarios.Salvar( PObj: Tobject );
+function ControllerFuncionarios.Salvar( PObj: Tobject ): string;
 begin
   inherited;
 
+end;
+
+procedure ControllerFuncionarios.SetCtrlCargo( PCtrlCargo: TObject );
+begin
+  ACtrlCargo := ControllerCargos( PCtrlCargo );
+end;
+
+procedure ControllerFuncionarios.SetCtrlCidade( PCtrlCidade: TObject );
+begin
+  ACtrlCidade := ControllerCidades( PCtrlCidade );
 end;
 
 end.

@@ -86,8 +86,11 @@ begin
   AConsultaDepartamentos.SetFormCadastro( OCadastroDepartamentos );
   AConsultaServicos.SetFormCadastro( OCadastroServicos );
 
-  OCadastroEstados.SetFormConsulta( AConsultaPaises );
-  // OCadastroCidades.SetConsultaEstados( AConsultaEstados );
+  OCadastroEstados.SetConsultaPais( AConsultaPaises );
+  OCadastroCidades.SetConsultaEstados( AConsultaEstados );
+  OCadastroCargos.SetConsultaDepartamento( AConsultaDepartamentos );
+  OCadastroFuncionarios.SetConsultaCidade( AConsultaCidades );
+  OCadastroFuncionarios.SetConsultaCargo( AConsultaCargos );
 end;
 
 destructor Inter.Destrua_se;
@@ -141,7 +144,7 @@ begin
   AConsultaCargos.ShowModal;
 end;
 
-procedure Inter.ConsultaFuncionaros( PObj, PCtrl: TObject );
+procedure Inter.ConsultaFuncionaros( PObj: TObject; PCtrl: TObject );
 begin
   AConsultaFuncionarios.ConhecaObj( PObj, PCtrl );
   AConsultaFuncionarios.ShowModal;

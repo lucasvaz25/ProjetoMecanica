@@ -15,11 +15,12 @@ type
     constructor CrieObj; virtual;
     destructor Destrua_se; virtual;
 
-    procedure Salvar( PObj: Tobject ); virtual;
-    procedure Excluir( PObj: TObject ); virtual;
+    function Salvar( PObj: Tobject ): string; virtual;
+    function Excluir( PObj: TObject ): string; virtual;
     function Pesquisar( PChave: String ): string; virtual;
     function Carregar( PObj: TObject ): string; virtual;
     function GetDS: TDataSource; virtual;
+    procedure SetDm( PObj: TObject ); virtual;
 
   end;
 
@@ -42,7 +43,7 @@ begin
 
 end;
 
-procedure Controller.Excluir( PObj: TObject );
+function Controller.Excluir( PObj: TObject ): string;
 begin
 
 end;
@@ -57,7 +58,12 @@ begin
 
 end;
 
-procedure Controller.Salvar( PObj: Tobject );
+function Controller.Salvar( PObj: Tobject ): string;
+begin
+
+end;
+
+procedure Controller.SetDm( PObj: TObject );
 begin
 
 end;

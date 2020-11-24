@@ -4,20 +4,24 @@ interface
 
 uses
   UController,
+  UControllerEstados,
   Data.DB;
 
 type
   ControllerCidades = class( Controller )
   private
   protected
+    ACtrlEstado: ControllerEstados;
   public
     constructor CrieObj; override;
     destructor Destrua_se; override;
 
-    procedure Salvar( PObj: Tobject ); override;
-    procedure Excluir( PObj: TObject ); override;
+    function Salvar( PObj: Tobject ): string; override;
+    function Excluir( PObj: TObject ): string; override;
     function Pesquisar( PChave: String ): string; override;
     function Carregar( PObj: TObject ): string; override;
+    function GetCtrlEstado: TObject;
+    procedure SetCrtlEstado( PCtrlEstado: TObject );
     function GetDS: TDataSource; override;
   end;
 
@@ -42,10 +46,15 @@ begin
   inherited;
 end;
 
-procedure ControllerCidades.Excluir( PObj: TObject );
+function ControllerCidades.Excluir( PObj: TObject ): string;
 begin
   inherited;
 
+end;
+
+function ControllerCidades.GetCtrlEstado: TObject;
+begin
+  Result := ACtrlEstado;
 end;
 
 function ControllerCidades.GetDS: TDataSource;
@@ -58,10 +67,15 @@ begin
 
 end;
 
-procedure ControllerCidades.Salvar( PObj: Tobject );
+function ControllerCidades.Salvar( PObj: Tobject ): string;
 begin
   inherited;
 
+end;
+
+procedure ControllerCidades.SetCrtlEstado( PCtrlEstado: TObject );
+begin
+  ACtrlEstado := ControllerEstados( PCtrlEstado );
 end;
 
 end.

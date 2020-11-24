@@ -71,8 +71,10 @@ end;
 
 procedure TConsultaEstados.Novo;
 begin
-  inherited;
+  OCadastroEstado.ConhecaObj( OEstado, ACtrlEstado );
+  OCadastroEstado.LimparEdt;
   OCadastroEstado.ShowModal;
+  inherited;
 end;
 
 procedure TConsultaEstados.Pesquisar;

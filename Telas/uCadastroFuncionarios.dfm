@@ -2,6 +2,7 @@ inherited CadastroFuncionarios: TCadastroFuncionarios
   Caption = 'Cadastro de Funcion'#225'rios'
   ClientHeight = 563
   ClientWidth = 709
+  ExplicitTop = -162
   ExplicitWidth = 725
   ExplicitHeight = 602
   PixelsPerInch = 96
@@ -119,6 +120,7 @@ inherited CadastroFuncionarios: TCadastroFuncionarios
     inherited btnPesquisarCad: TBitBtn
       Left = 614
       Top = 270
+      OnClick = btnPesquisarCadClick
       ExplicitLeft = 614
       ExplicitTop = 270
     end
@@ -245,10 +247,6 @@ inherited CadastroFuncionarios: TCadastroFuncionarios
       TabOrder = 18
       object tabInfo: TTabSheet
         Caption = 'Informa'#231#245'es Adicionais'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Panel2: TPanel
           Left = 0
           Top = 0
@@ -409,6 +407,7 @@ inherited CadastroFuncionarios: TCadastroFuncionarios
               FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF7B77767B77767B77767B
               7776FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
             TabOrder = 7
+            OnClick = btnPesquisarCargoClick
           end
         end
       end
@@ -448,8 +447,8 @@ inherited CadastroFuncionarios: TCadastroFuncionarios
             TabOrder = 1
           end
           object btnAltServico: TBitBtn
-            Left = 425
-            Top = 23
+            Left = 427
+            Top = 22
             Width = 41
             Height = 25
             Caption = 'Editar'
@@ -488,24 +487,60 @@ inherited CadastroFuncionarios: TCadastroFuncionarios
                 Visible = True
               end>
           end
+          object btnAdicionarLista: TBitBtn
+            Left = 475
+            Top = 22
+            Width = 110
+            Height = 25
+            Caption = 'Adicionar '#224' lista'
+            Glyph.Data = {
+              36030000424D3603000000000000360000002800000010000000100000000100
+              18000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0E882E0E882E0E
+              882E0E882E0E882EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFF0E882E07A72F099E2E0B932E0E882EFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0E882E05AF2F08
+              BA29099E2E0E882EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFF0E882E04B62F08B82807A72F0E882EFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0E882E03BB2F09
+              B52605AF2F0E882EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0E882E0E882E
+              0E882E0E882E0E882E188D3616C44009B22504B62F0B922E0C902E0C8E2E0D8C
+              2E0D892E0E882EFFFFFF2A964673E28D68E0845DDD7B53DA7349D66A41CB5D1D
+              B63506B72B04B62F05AF2F07A72F099E2E0B932E0E882EFFFFFF2D97497EE597
+              79D1856ECE7C64CC7459CA6B51C26046C1581EB63507B52807B62807B62A07B7
+              2B099E2E0E882EFFFFFF30984B8AE7A07FE59775E38F6AE0865FDD7D58D27052
+              C36143CB5F17C54103BB2F04B62F05AF2F07A72F0E882EFFFFFF0E882E0E882E
+              0E882E0E882E0E882E0E882E61DE7E5DC56A4CD76D0E882E0E882E0E882E0E88
+              2E0E882E0E882EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0E882E6DE18869
+              C77458DB770E882EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFF0E882E78E49275CA7E63DE800E882EFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0E882E83E69B7F
+              D38A6FE18A0E882EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFF0E882E8FE8A485E69C7BE4930E882EFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0E882E0E882E0E
+              882E0E882E0E882EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+            Layout = blGlyphRight
+            TabOrder = 4
+          end
         end
       end
     end
   end
   object dsLookUp: TDataSource
-    Left = 376
-    Top = 512
+    Left = 344
+    Top = 520
   end
   object DsServicos: TDataSource
     DataSet = CdsServicos
-    Left = 661
-    Top = 448
+    Left = 653
+    Top = 416
   end
   object CdsServicos: TClientDataSet
     Aggregates = <>
     Params = <>
-    Left = 661
-    Top = 424
+    Left = 653
+    Top = 368
     object CdsServicosSequencia: TIntegerField
       DisplayLabel = 'Seq.'
       FieldName = 'Sequencia'

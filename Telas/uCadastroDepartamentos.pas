@@ -3,20 +3,41 @@ unit uCadastroDepartamentos;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uCadastro, Vcl.StdCtrls, Vcl.Buttons,
-  Vcl.ExtCtrls;
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  UCadastro,
+  Vcl.StdCtrls,
+  Vcl.Buttons,
+  Vcl.ExtCtrls,
+  UDepartamento,
+  UControllerDepartamentos;
 
 type
-  TCadastroDepartamentos = class(TCadastro)
-    edtDepartamento: TEdit;
-    lblDepartamento: TLabel;
-    lblObs: TLabel;
-    edtObs: TMemo;
+  TCadastroDepartamentos = class( TCadastro )
+    EdtDepartamento: TEdit;
+    LblDepartamento: TLabel;
+    LblObs: TLabel;
+    EdtObs: TMemo;
   private
     { Private declarations }
+    ODepartamento: Departamentos;
+    ACtrlDepartamento: ControllerDepartamentos;
   public
     { Public declarations }
+    procedure Salvar; Override;
+    procedure Sair; Override;
+    procedure LimparEdt; Override;
+    procedure CarregaEdt; Override;
+    procedure BloqueiEdt; Override;
+    procedure DesbloqueiaEdt; Override;
+    procedure ConhecaObj( PObj: TObject; PCtrl: TObject ); Override;
   end;
 
 var
@@ -25,5 +46,57 @@ var
 implementation
 
 {$R *.dfm}
+
+{ TCadastroDepartamentos }
+
+procedure TCadastroDepartamentos.BloqueiEdt;
+begin
+  inherited;
+  EdtDepartamento.Enabled := False;
+  EdtObs.Enabled          := False;
+end;
+
+procedure TCadastroDepartamentos.CarregaEdt;
+begin
+  inherited;
+  EdtCodigo.Text       := IntToStr( ODepartamento.GetCodigo );
+  EdtDepartamento.Text := ODepartamento.Departamento;
+  EdtObs.Text          := ODepartamento.Obs;
+  EdtDataCad.Text      := ODepartamento.GetDataCad;
+  EdtDataUltAlt.Text   := ODepartamento.GetDataUltAlt;
+end;
+
+procedure TCadastroDepartamentos.ConhecaObj( PObj, PCtrl: TObject );
+begin
+  inherited;
+  ODepartamento     := Departamentos( PObj );
+  ACtrlDepartamento := ControllerDepartamentos( PCtrl );
+end;
+
+procedure TCadastroDepartamentos.DesbloqueiaEdt;
+begin
+  inherited;
+  EdtDepartamento.Enabled := True;
+  EdtObs.Enabled          := True;
+end;
+
+procedure TCadastroDepartamentos.LimparEdt;
+begin
+  inherited;
+  EdtDepartamento.Clear;
+  EdtObs.Clear;
+end;
+
+procedure TCadastroDepartamentos.Sair;
+begin
+  inherited;
+
+end;
+
+procedure TCadastroDepartamentos.Salvar;
+begin
+  inherited;
+
+end;
 
 end.

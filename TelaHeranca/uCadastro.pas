@@ -89,9 +89,13 @@ end;
 
 procedure TCadastro.LimparEdt;
 begin
-  Self.EdtCodigo.Text     := '0';
-  Self.EdtDataCad.Text    := DateToStr( Now );
-  Self.EdtDataUltAlt.Text := '';
+  Self.EdtCodigo.Text  := '0';
+  Self.EdtDataCad.Text := DateToStr( Now );
+
+  if Self.EdtCodigo.Text <> '0' then
+    Self.EdtDataUltAlt.Text := DateToStr( Now )
+  else
+    Self.EdtDataUltAlt.Text := '';
 end;
 
 procedure TCadastro.Sair;

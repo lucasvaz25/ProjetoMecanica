@@ -1,0 +1,68 @@
+unit uDAO;
+
+interface
+
+uses
+  Data.DB;
+
+type
+  DAO = class
+  private
+  protected
+  public
+    constructor CrieObj; virtual;
+    destructor Destrua_se; virtual;
+
+    function Salvar( PObj: Tobject ): string; virtual;
+    function Excluir( PObj: TObject ): string; virtual;
+    procedure SetDM( PObj: TObject ); virtual;
+    function Pesquisar( PChave: String ): string; virtual;
+    function Carregar( PObj: TObject ): string; virtual;
+    function GetDS: TDataSource; virtual;
+  end;
+
+implementation
+
+{ DAO }
+
+function DAO.Carregar( PObj: TObject ): string;
+begin
+
+end;
+
+constructor DAO.CrieObj;
+begin
+
+end;
+
+destructor DAO.Destrua_se;
+begin
+
+end;
+
+function DAO.Excluir( PObj: TObject );
+begin
+
+end;
+
+function DAO.GetDS: TDataSource;
+begin
+
+end;
+
+function DAO.Pesquisar( PChave: String ): string;
+begin
+
+end;
+
+function DAO.Salvar( PObj: Tobject );
+begin
+
+end;
+
+function DAO.SetDM( PObj: TObject );
+begin
+
+end;
+
+end.

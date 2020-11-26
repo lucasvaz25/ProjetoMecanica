@@ -1,0 +1,124 @@
+unit uConsultaCidades;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  UConsulta,
+  Data.DB,
+  Vcl.StdCtrls,
+  Vcl.Buttons,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  Vcl.ExtCtrls,
+  UCadastroCidades,
+  Ucidades,
+  UControllerCidades;
+
+type
+  TConsultaCidades = class( TConsulta )
+  private
+    { Private declarations }
+    OCadastroCidade: TCadastroCidades;
+    ACidade: Cidades;
+    ACtrlCidade: ControllerCidades;
+  public
+    { Public declarations }
+    procedure Novo; override;
+    procedure Alterar; override;
+    procedure Excluir; override;
+    procedure Sair; override;
+    procedure Pesquisar; override;
+    procedure SetFormCadastro( PObj: TObject ); override;
+    procedure ConhecaObj( PObj: TObject; PCtrl: TObject ); override;
+  end;
+
+var
+  ConsultaCidades: TConsultaCidades;
+
+implementation
+
+{$R *.dfm}
+
+{ TConsultaCidades }
+
+procedure TConsultaCidades.Alterar;
+begin
+  inherited;
+  ACtrlCidade.Carregar( ACidade );
+  OCadastroCidade.ConhecaObj( ACidade, ACtrlCidade );
+  OCadastroCidade.ShowModal;
+  if OCadastroCidade.Msg = 'Salvou' then
+    ACtrlCidade.Pesquisar( ACidade.GetCidade )
+  else
+    ACtrlCidade.Pesquisar( '' );
+end;
+
+procedure TConsultaCidades.ConhecaObj( PObj, PCtrl: TObject );
+begin
+  inherited;
+  ACidade                 := Cidades( PObj );
+  ACtrlCidade             := ControllerCidades( PCtrl );
+  Self.DBGrid1.DataSource := ACtrlCidade.GetDS;
+  ACtrlCidade.Pesquisar( Self.EdtPesquisa.Text );
+end;
+
+procedure TConsultaCidades.Excluir;
+var
+  Aux: string;
+begin
+  ACtrlCidade.Carregar( ACidade );
+  OCadastroCidade.ConhecaObj( ACidade, ACtrlCidade );
+  OCadastroCidade.BloqueiEdt;
+  Aux                               := OCadastroCidade.BtnSalvar.Caption;
+  OCadastroCidade.BtnSalvar.Caption := '&Excluir';
+  OCadastroCidade.ShowModal;
+  OCadastroCidade.BtnSalvar.Caption := Aux;
+  OCadastroCidade.DesbloqueiaEdt;
+  ACtrlCidade.Pesquisar( Self.EdtPesquisa.Text );
+  inherited;
+end;
+
+procedure TConsultaCidades.Novo;
+begin
+  inherited;
+  OCadastroCidade.ConhecaObj( ACidade, ACtrlCidade );
+  OCadastroCidade.LimparEdt;
+  OCadastroCidade.ShowModal;
+  ACtrlCidade.Pesquisar( ACidade.GetCidade );
+
+  inherited;
+end;
+
+procedure TConsultaCidades.Pesquisar;
+begin
+  inherited;
+  ACtrlCidade.Pesquisar( Self.EdtPesquisa.Text );
+end;
+
+procedure TConsultaCidades.Sair;
+begin
+  if Self.BtnSair.Caption = 'Selecionar' then
+  begin
+    ACtrlEstado.Carregar( OEstado );
+    inherited;
+  end
+  else
+    inherited;
+end;
+
+procedure TConsultaCidades.SetFormCadastro( PObj: TObject );
+begin
+  inherited;
+  OCadastroCidade := TCadastroCidades( PObj );
+end;
+
+end.

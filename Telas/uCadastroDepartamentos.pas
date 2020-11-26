@@ -25,12 +25,14 @@ type
     LblDepartamento: TLabel;
     LblObs: TLabel;
     EdtObs: TMemo;
+    procedure FormShow( Sender: TObject );
   private
     { Private declarations }
     ODepartamento: Departamentos;
     ACtrlDepartamento: ControllerDepartamentos;
   public
     { Public declarations }
+    Msg: string;
     procedure Salvar; Override;
     procedure Sair; Override;
     procedure LimparEdt; Override;
@@ -71,6 +73,8 @@ begin
   inherited;
   ODepartamento     := Departamentos( PObj );
   ACtrlDepartamento := ControllerDepartamentos( PCtrl );
+  Self.LimparEdt;
+  Self.CarregaEdt;
 end;
 
 procedure TCadastroDepartamentos.DesbloqueiaEdt;
@@ -78,6 +82,13 @@ begin
   inherited;
   EdtDepartamento.Enabled := True;
   EdtObs.Enabled          := True;
+end;
+
+procedure TCadastroDepartamentos.FormShow( Sender: TObject );
+begin
+  inherited;
+  if EdtCodigo.Text = '0' then
+    EdtDepartamento.SetFocus;
 end;
 
 procedure TCadastroDepartamentos.LimparEdt;
@@ -89,6 +100,7 @@ end;
 
 procedure TCadastroDepartamentos.Sair;
 begin
+  Msg := 'Saiu';
   inherited;
 
 end;
@@ -96,7 +108,39 @@ end;
 procedure TCadastroDepartamentos.Salvar;
 begin
   inherited;
-
+  if EdtDepartamento.Text = '' then
+  begin
+    ShowMessage( 'Campo Serviço é obrigatório!' );
+    EdtDepartamento.SetFocus;
+  end
+  else
+  begin
+    with ODepartamento do
+    begin
+      SetCodigo( StrToInt( EdtCodigo.Text ) );
+      Departamento := EdtDepartamento.Text;
+      Obs          := EdtObs.Text;
+      SetDataCad( EdtDataCad.Text );
+    end;
+    if BtnSalvar.Caption = '&Salvar' then
+    begin
+      Msg := ACtrlDepartamento.Salvar( ODepartamento );
+      if Msg = '' then
+      begin
+        Msg := 'Salvou';
+        Close;
+      end;
+    end
+    else
+    begin
+      Msg := ACtrlDepartamento.Excluir( ODepartamento );
+      if Msg = '' then
+      begin
+        Msg := 'Deletado';
+        Close;
+      end;
+    end;
+  end;
 end;
 
 end.

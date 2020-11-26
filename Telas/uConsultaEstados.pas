@@ -39,6 +39,8 @@ type
     procedure Pesquisar; override;
     procedure SetFormCadastro( PObj: TObject ); override;
     procedure ConhecaObj( PObj: TObject; PCtrl: TObject ); override;
+    function GetOEstado: Estados;
+    function GetACtrlEstado: ControllerEstados;
   end;
 
 var
@@ -53,20 +55,48 @@ implementation
 procedure TConsultaEstados.Alterar;
 begin
   inherited;
-
+  ACtrlEstado.Carregar( OEstado );
+  OCadastroEstado.ConhecaObj( OEstado, ACtrlEstado );
+  OCadastroEstado.ShowModal;
+  if OCadastroEstado.Msg = 'Salvou' then
+    ACtrlEstado.Pesquisar( OEstado.GetEstado )
+  else
+    ACtrlEstado.Pesquisar( '' );
 end;
 
 procedure TConsultaEstados.ConhecaObj( PObj, PCtrl: TObject );
 begin
   inherited;
-  OEstado     := Estados( PObj );
-  ACtrlEstado := ControllerEstados( PCtrl );
+  OEstado                 := Estados( PObj );
+  ACtrlEstado             := ControllerEstados( PCtrl );
+  Self.DBGrid1.DataSource := ACtrlEstado.GetDS;
+  ACtrlEstado.Pesquisar( Self.EdtPesquisa.Text );
 end;
 
 procedure TConsultaEstados.Excluir;
+var
+  Aux: string;
 begin
+  ACtrlEstado.Carregar( OEstado );
+  OCadastroEstado.ConhecaObj( OEstado, ACtrlEstado );
+  OCadastroEstado.BloqueiEdt;
+  Aux                               := OCadastroEstado.BtnSalvar.Caption;
+  OCadastroEstado.BtnSalvar.Caption := '&Excluir';
+  OCadastroEstado.ShowModal;
+  OCadastroEstado.BtnSalvar.Caption := Aux;
+  OCadastroEstado.DesbloqueiaEdt;
+  ACtrlEstado.Pesquisar( Self.EdtPesquisa.Text );
   inherited;
+end;
 
+function TConsultaEstados.GetACtrlEstado: ControllerEstados;
+begin
+  Result := Self.ACtrlEstado;
+end;
+
+function TConsultaEstados.GetOEstado: Estados;
+begin
+  Result := Self.OEstado;
 end;
 
 procedure TConsultaEstados.Novo;
@@ -74,19 +104,26 @@ begin
   OCadastroEstado.ConhecaObj( OEstado, ACtrlEstado );
   OCadastroEstado.LimparEdt;
   OCadastroEstado.ShowModal;
+  ACtrlEstado.Pesquisar( OEstado.GetEstado );
+
   inherited;
 end;
 
 procedure TConsultaEstados.Pesquisar;
 begin
   inherited;
-
+  ACtrlEstado.Pesquisar( Self.EdtPesquisa.Text );
 end;
 
 procedure TConsultaEstados.Sair;
 begin
-  inherited;
-
+  if Self.BtnSair.Caption = 'Selecionar' then
+  begin
+    ACtrlEstado.Carregar( OEstado );
+    inherited;
+  end
+  else
+    inherited;
 end;
 
 procedure TConsultaEstados.SetFormCadastro( PObj: TObject );

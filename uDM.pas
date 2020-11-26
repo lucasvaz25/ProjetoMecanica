@@ -20,6 +20,16 @@ type
     DsPaises: TDataSource;
     DsEstados: TDataSource;
     DsCidades: TDataSource;
+    QFuncionarios: TFDQuery;
+    QServicos: TFDQuery;
+    QDepartamentos: TFDQuery;
+    QCargos: TFDQuery;
+    QServicos_Func: TFDQuery;
+    DsFuncionarios: TDataSource;
+    DsServicos: TDataSource;
+    DsDepartamentos: TDataSource;
+    DsCargos: TDataSource;
+    DsServicos_Func: TDataSource;
   private
     { Private declarations }
   public

@@ -22,6 +22,7 @@ type
     function Carregar( PObj: TObject ): string; override;
     function GetDS: TDataSource; override;
     procedure SetDM( PObj: TObject ); override;
+    function VerificaExiste: Boolean; override;
   end;
 
 implementation
@@ -30,7 +31,7 @@ implementation
 
 function ControllerPaises.Carregar( PObj: TObject ): string;
 begin
-
+  Result := ADaoPais.Carregar( PObj );
 end;
 
 constructor ControllerPaises.CrieObj;
@@ -48,7 +49,7 @@ end;
 function ControllerPaises.Excluir( PObj: TObject ): string;
 begin
   inherited;
-
+  ADaoPais.Excluir( PObj );
 end;
 
 function ControllerPaises.GetDS: TDataSource;
@@ -64,13 +65,18 @@ end;
 function ControllerPaises.Salvar( PObj: Tobject ): string;
 begin
   inherited;
-
+  Result := ADaoPais.Salvar( PObj );
 end;
 
 procedure ControllerPaises.SetDM( PObj: TObject );
 begin
   inherited;
   ADaoPais.SetDM( PObj );
+end;
+
+function ControllerPaises.VerificaExiste: Boolean;
+begin
+  Result := ADaoPais.VerificaExiste;
 end;
 
 end.

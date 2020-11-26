@@ -46,6 +46,7 @@ type
     procedure Pesquisar; Virtual;
     procedure SetFormCadastro( PObj: TObject ); Virtual;
     procedure ConhecaObj( PObj: TObject; PCtrl: TObject ); Virtual;
+    procedure LimpaCampoPesquisa;
   end;
 
 var
@@ -99,6 +100,13 @@ end;
 procedure TConsulta.FormShow( Sender: TObject );
 begin
   Panel1.Color := TColor( $89C089 );
+  LimpaCampoPesquisa;
+  Self.Pesquisar;
+end;
+
+procedure TConsulta.LimpaCampoPesquisa;
+begin
+  EdtPesquisa.Clear;
 end;
 
 procedure TConsulta.Novo;

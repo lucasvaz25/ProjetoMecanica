@@ -4,12 +4,14 @@ interface
 
 uses
   Data.DB,
+  UDaoDepartamentos,
   UController;
 
 type
   ControllerDepartamentos = class( Controller )
   private
   protected
+    ADaoDepartamento: DaoDepartamentos;
   public
     constructor CrieObj; override;
     destructor Destrua_se; override;
@@ -19,6 +21,8 @@ type
     function Pesquisar( PChave: String ): string; override;
     function Carregar( PObj: TObject ): string; override;
     function GetDS: TDataSource; override;
+    procedure SetDm( Pobj: TObject );
+    function VerificaExiste: Boolean; override;
   end;
 
 implementation
@@ -27,41 +31,51 @@ implementation
 
 function ControllerDepartamentos.Carregar( PObj: TObject ): string;
 begin
-
+  Result := ADaoDepartamento.Carregar( PObj );
 end;
 
 constructor ControllerDepartamentos.CrieObj;
 begin
   inherited;
-
+  ADaoDepartamento := DaoDepartamentos.CrieObj;
 end;
 
 destructor ControllerDepartamentos.Destrua_se;
 begin
-
+  ADaoDepartamento.Destrua_se;
   inherited;
 end;
 
 function ControllerDepartamentos.Excluir( PObj: TObject ): string;
 begin
   inherited;
-
+  ADaoDepartamento.Excluir( PObj );
 end;
 
 function ControllerDepartamentos.GetDS: TDataSource;
 begin
-
+  Result := ADaoDepartamento.GetDS;
 end;
 
 function ControllerDepartamentos.Pesquisar( PChave: String ): string;
 begin
-
+  Result := ADaoDepartamento.Pesquisar( PChave );
 end;
 
 function ControllerDepartamentos.Salvar( PObj: Tobject ): string;
 begin
   inherited;
+  Result := ADaoDepartamento.Salvar( PObj );
+end;
 
+procedure ControllerDepartamentos.SetDm( Pobj: TObject );
+begin
+  ADaoDepartamento.SetDM( PObj );
+end;
+
+function ControllerDepartamentos.VerificaExiste: Boolean;
+begin
+  Result := ADaoDepartamento.VerificaExiste;
 end;
 
 end.

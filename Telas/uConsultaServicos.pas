@@ -39,6 +39,8 @@ type
     procedure Pesquisar; override;
     procedure SetFormCadastro( PObj: TObject ); override;
     procedure ConhecaObj( PObj: TObject; PCtrl: TObject ); override;
+    function GetOServico: Servicos;
+    function GetACtrlServico: ControllerServicos;
   end;
 
 var
@@ -53,20 +55,48 @@ implementation
 procedure TConsultaServicos.Alterar;
 begin
   inherited;
-
+  ACtrlServico.Carregar( OServico );
+  OCadastroServico.ConhecaObj( OServico, ACtrlServico );
+  OCadastroServico.ShowModal;
+  if OCadastroServico.Msg = 'Salvou' then
+    ACtrlServico.Pesquisar( OServico.Servico )
+  else
+    ACtrlServico.Pesquisar( '' );
 end;
 
 procedure TConsultaServicos.ConhecaObj( PObj, PCtrl: TObject );
 begin
   inherited;
-  OServico     := Servicos( PObj );
-  ACtrlServico := ControllerServicos( PCtrl );
+  OServico                := Servicos( PObj );
+  ACtrlServico            := ControllerServicos( PCtrl );
+  Self.DBGrid1.DataSource := ACtrlServico.GetDS;
+  ACtrlServico.Pesquisar( Self.EdtPesquisa.Text );
 end;
 
 procedure TConsultaServicos.Excluir;
+var
+  Aux: string;
 begin
+  ACtrlServico.Carregar( OServico );
+  OCadastroServico.ConhecaObj( OServico, ACtrlServico );
+  OCadastroServico.BloqueiEdt;
+  Aux                                := OCadastroServico.BtnSalvar.Caption;
+  OCadastroServico.BtnSalvar.Caption := '&Excluir';
+  OCadastroServico.ShowModal;
+  OCadastroServico.BtnSalvar.Caption := Aux;
+  OCadastroServico.DesbloqueiaEdt;
+  ACtrlServico.Pesquisar( Self.EdtPesquisa.Text );
   inherited;
+end;
 
+function TConsultaServicos.GetACtrlServico: ControllerServicos;
+begin
+  Result := Self.ACtrlServico;
+end;
+
+function TConsultaServicos.GetOServico: Servicos;
+begin
+  Result := Self.OServico;
 end;
 
 procedure TConsultaServicos.Novo;
@@ -75,18 +105,24 @@ begin
   OCadastroServico.ConhecaObj( OServico, ACtrlServico );
   OCadastroServico.LimparEdt;
   OCadastroServico.ShowModal;
+  ACtrlServico.Pesquisar( OServico.Servico );
 end;
 
 procedure TConsultaServicos.Pesquisar;
 begin
   inherited;
-
+  ACtrlServico.Pesquisar( Self.EdtPesquisa.Text );
 end;
 
 procedure TConsultaServicos.Sair;
 begin
-  inherited;
-
+  if Self.BtnSair.Caption = 'Selecionar' then
+  begin
+    ACtrlServico.Carregar( OServico );
+    inherited;
+  end
+  else
+    inherited;
 end;
 
 procedure TConsultaServicos.SetFormCadastro( PObj: TObject );

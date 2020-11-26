@@ -39,6 +39,8 @@ type
     procedure Pesquisar; override;
     procedure SetFormCadastro( PObj: TObject ); override;
     procedure ConhecaObj( PObj: TObject; PCtrl: TObject ); override;
+    function GetODepartamento: Departamentos;
+    function GetACtrlDepartamento: ControllerDepartamentos;
   end;
 
 var
@@ -53,20 +55,48 @@ implementation
 procedure TConsultaDepartamentos.Alterar;
 begin
   inherited;
-
+  ACtrlDepartamento.Carregar( ODepartamento );
+  OCadastroDepartamento.ConhecaObj( ODepartamento, ACtrlDepartamento );
+  OCadastroDepartamento.ShowModal;
+  if OCadastroDepartamento.Msg = 'Salvou' then
+    ACtrlDepartamento.Pesquisar( ODepartamento.Departamento )
+  else
+    ACtrlDepartamento.Pesquisar( '' );
 end;
 
 procedure TConsultaDepartamentos.ConhecaObj( PObj, PCtrl: TObject );
 begin
   inherited;
-  ODepartamento     := Departamentos( PObj );
-  ACtrlDepartamento := ControllerDepartamentos( PCtrl );
+  ODepartamento           := Departamentos( PObj );
+  ACtrlDepartamento       := ControllerDepartamentos( PCtrl );
+  Self.DBGrid1.DataSource := ACtrlDepartamento.GetDS;
+  ACtrlDepartamento.Pesquisar( Self.EdtPesquisa.Text );
 end;
 
 procedure TConsultaDepartamentos.Excluir;
+var
+  Aux: string;
 begin
+  ACtrlDepartamento.Carregar( ODepartamento );
+  OCadastroDepartamento.ConhecaObj( ODepartamento, ACtrlDepartamento );
+  OCadastroDepartamento.BloqueiEdt;
+  Aux                                     := OCadastroDepartamento.BtnSalvar.Caption;
+  OCadastroDepartamento.BtnSalvar.Caption := '&Excluir';
+  OCadastroDepartamento.ShowModal;
+  OCadastroDepartamento.BtnSalvar.Caption := Aux;
+  OCadastroDepartamento.DesbloqueiaEdt;
+  ACtrlDepartamento.Pesquisar( Self.EdtPesquisa.Text );
   inherited;
+end;
 
+function TConsultaDepartamentos.GetACtrlDepartamento: ControllerDepartamentos;
+begin
+  Result := Self.ACtrlDepartamento;
+end;
+
+function TConsultaDepartamentos.GetODepartamento: Departamentos;
+begin
+  Result := Self.ODepartamento;
 end;
 
 procedure TConsultaDepartamentos.Novo;
@@ -75,18 +105,24 @@ begin
   OCadastroDepartamento.ConhecaObj( ODepartamento, ACtrlDepartamento );
   OCadastroDepartamento.LimparEdt;
   OCadastroDepartamento.ShowModal;
+  ACtrlDepartamento.Pesquisar( ODepartamento.Departamento );
 end;
 
 procedure TConsultaDepartamentos.Pesquisar;
 begin
   inherited;
-
+  ACtrlDepartamento.Pesquisar( Self.EdtPesquisa.Text );
 end;
 
 procedure TConsultaDepartamentos.Sair;
 begin
-  inherited;
-
+  if Self.BtnSair.Caption = 'Selecionar' then
+  begin
+    ACtrlDepartamento.Carregar( ODepartamento );
+    inherited;
+  end
+  else
+    inherited;
 end;
 
 procedure TConsultaDepartamentos.SetFormCadastro( PObj: TObject );

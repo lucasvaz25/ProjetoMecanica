@@ -35,6 +35,7 @@ type
     LblEstado: TLabel;
     procedure FormShow( Sender: TObject );
     procedure BtnPesquisarCadClick( Sender: TObject );
+    procedure EdtCidadeExit( Sender: TObject );
   private
     { Private declarations }
     Acidade: Cidades;
@@ -42,6 +43,7 @@ type
     AConsultaEstado: TConsultaEstados;
   public
     { Public declarations }
+    Msg: string;
     procedure Salvar; Override;
     procedure Sair; Override;
     procedure LimparEdt; Override;
@@ -79,7 +81,10 @@ begin
   AConsultaEstado.BtnSair.Glyph.LoadFromFile( 'C:\Users\Vaz\OneDrive\Documentos\Sistemas de Informação\4º periodo\ProjetoMecanica\image\Ok.bmp' );
   AConsultaEstado.ConhecaObj( Acidade.GetoEstado, ACtrlCidade.GetCtrlEstado );
   AConsultaEstado.ShowModal;
-
+  Acidade.SetoEstado( AConsultaEstado.GetOEstado );
+  ACtrlCidade.SetCrtlEstado( AConsultaEstado.GetACtrlEstado );
+  EdtCodEstado.Text               := IntToStr( Acidade.GetoEstado.GetCodigo );
+  EdtEstado.Text                  := Acidade.GetoEstado.GetEstado;
   AConsultaEstado.BtnSair.Caption := MAux;
   AConsultaEstado.BtnSair.Glyph.LoadFromFile( 'C:\Users\Vaz\OneDrive\Documentos\Sistemas de Informação\4º periodo\ProjetoMecanica\image\Sair.bmp' );
 end;
@@ -102,6 +107,8 @@ begin
   inherited;
   Acidade     := Cidades( PObj );
   ACtrlCidade := ControllerCidades( PCtrl );
+  Self.LimparEdt;
+  Self.CarregaEdt;
 end;
 
 procedure TCadastroCidades.DesbloqueiaEdt;
@@ -114,10 +121,24 @@ begin
   EdtEstado.Enabled    := True;
 end;
 
+procedure TCadastroCidades.EdtCidadeExit( Sender: TObject );
+begin
+  inherited;
+  Msg := ACtrlCidade.Pesquisar( EdtCidade.Text );
+  if EdtCodigo.Text <> '0' then
+    Exit;
+  if ACtrlCidade.VerificaExiste then
+  begin
+    ShowMessage( Self.EdtCidade.Text + ( ', já foi cadastrado! ' ) );
+    EdtEstado.SetFocus;
+  end;
+end;
+
 procedure TCadastroCidades.FormShow( Sender: TObject );
 begin
   inherited;
-  EdtCidade.SetFocus;
+  if EdtCodigo.Text = '0' then
+    EdtCidade.SetFocus;
 end;
 
 procedure TCadastroCidades.LimparEdt;
@@ -132,6 +153,7 @@ end;
 
 procedure TCadastroCidades.Sair;
 begin
+  Msg := 'Saiu';
   inherited;
 
 end;
@@ -139,7 +161,52 @@ end;
 procedure TCadastroCidades.Salvar;
 begin
   inherited;
+  if EdtCidade.Text = '' then
+  begin
+    ShowMessage( 'Campo Cidade é obrigatório!' );
+    EdtCidade.SetFocus;
+  end
+  else if EdtDDD.Text = '' then
+  begin
+    ShowMessage( 'Campo DDD é obrigatório!' );
+    EdtDDD.SetFocus;
+  end
+  else if EdtEstado.Text = '' then
+  begin
+    ShowMessage( 'Campo Estado é obrigatório!' );
+    EdtEstado.SetFocus;
+  end
+  else
+  begin
+    with Acidade do
+    begin
+      SetCodigo( StrToInt( EdtCodigo.Text ) );
+      SetCidade( EdtCidade.Text );
+      SetDDD( EdtDDD.Text );
+      SetSigla( EdtSigla.Text );
+      GetoEstado.SetCodigo( StrToInt( EdtCodEstado.Text ) );
 
+      SetDataCad( EdtDataCad.Text );
+    end;
+    if BtnSalvar.Caption = '&Salvar' then
+    begin
+      Msg := ACtrlCidade.Salvar( Acidade );
+      if Msg = '' then
+      begin
+        Msg := 'Salvou';
+        Close;
+      end;
+    end
+    else
+    begin
+      Msg := ACtrlCidade.Excluir( Acidade );
+      if Msg = '' then
+      begin
+        Msg := 'Deletado';
+        Close;
+      end;
+    end;
+  end;
 end;
 
 procedure TCadastroCidades.SetConsultaEstados( PConsultaEstado: TObject );

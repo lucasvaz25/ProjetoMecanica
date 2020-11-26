@@ -1,0 +1,128 @@
+unit uConsultaDepartamentos;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  UConsulta,
+  Data.DB,
+  Vcl.StdCtrls,
+  Vcl.Buttons,
+  Vcl.Grids,
+  Vcl.DBGrids,
+  Vcl.ExtCtrls,
+  UCadastroDepartamentos,
+  UControllerDepartamentos,
+  UDepartamento;
+
+type
+  TConsultaDepartamentos = class( TConsulta )
+  private
+    { Private declarations }
+    OCadastroDepartamento: TCadastroDepartamentos;
+    ODepartamento: Departamentos;
+    ACtrlDepartamento: ControllerDepartamentos;
+  public
+    { Public declarations }
+    procedure Novo; override;
+    procedure Alterar; override;
+    procedure Excluir; override;
+    procedure Sair; override;
+    procedure Pesquisar; override;
+    procedure SetFormCadastro( PObj: TObject ); override;
+    procedure ConhecaObj( PObj: TObject; PCtrl: TObject ); override;
+    function GetODepartamento: Departamentos;
+    function GetACtrlDepartamento: ControllerDepartamentos;
+  end;
+
+var
+  ConsultaDepartamentos: TConsultaDepartamentos;
+
+implementation
+
+{$R *.dfm}
+
+{ TConsultaDepartamentos }
+
+procedure TConsultaDepartamentos.Alterar;
+begin
+  inherited;
+  ACtrlDepartamento.Carregar( ODepartamento );
+  OCadastroDepartamento.ConhecaObj( ODepartamento, ACtrlDepartamento );
+  OCadastroDepartamento.ShowModal;
+  if OCadastroDepartamento.Msg = 'Salvou' then
+    ACtrlDepartamento.Pesquisar( ODepartamento.Departamento )
+  else
+    ACtrlDepartamento.Pesquisar( '' );
+end;
+
+procedure TConsultaDepartamentos.ConhecaObj( PObj, PCtrl: TObject );
+begin
+  inherited;
+  ODepartamento           := Departamentos( PObj );
+  ACtrlDepartamento       := ControllerDepartamentos( PCtrl );
+  Self.DBGrid1.DataSource := ACtrlDepartamento.GetDS;
+  ACtrlDepartamento.Pesquisar( Self.EdtPesquisa.Text );
+end;
+
+procedure TConsultaDepartamentos.Excluir;
+var
+  Aux: string;
+begin
+  ACtrlDepartamento.Carregar( OServico );
+  OCadastroServico.ConhecaObj( OServico, ACtrlDepartamento );
+  OCadastroServico.BloqueiEdt;
+  Aux                                := OCadastroServico.BtnSalvar.Caption;
+  OCadastroServico.BtnSalvar.Caption := '&Excluir';
+  OCadastroServico.ShowModal;
+  OCadastroServico.BtnSalvar.Caption := Aux;
+  OCadastroServico.DesbloqueiaEdt;
+  ACtrlDepartamento.Pesquisar( Self.EdtPesquisa.Text );
+  inherited;
+end;
+
+function TConsultaDepartamentos.GetACtrlDepartamento: ControllerDepartamentos;
+begin
+  Result := Self.ACtrlDepartamento;
+end;
+
+function TConsultaDepartamentos.GetODepartamento: Departamentos;
+begin
+  Result := Self.ODepartamento;
+end;
+
+procedure TConsultaDepartamentos.Novo;
+begin
+  inherited;
+  OCadastroDepartamento.ConhecaObj( ODepartamento, ACtrlDepartamento );
+  OCadastroDepartamento.LimparEdt;
+  OCadastroDepartamento.ShowModal;
+end;
+
+procedure TConsultaDepartamentos.Pesquisar;
+begin
+  inherited;
+
+end;
+
+procedure TConsultaDepartamentos.Sair;
+begin
+  inherited;
+
+end;
+
+procedure TConsultaDepartamentos.SetFormCadastro( PObj: TObject );
+begin
+  inherited;
+  OCadastroDepartamento := TCadastroDepartamentos( PObj );
+end;
+
+end.

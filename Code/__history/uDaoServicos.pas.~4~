@@ -1,0 +1,147 @@
+unit uDaoServicos;
+
+interface
+
+uses
+  UServicos,
+  UDAO,
+  Data.DB;
+
+type
+  DaoServicos = class( Dao )
+  private
+  protected
+  public
+    constructor CrieObj; override;
+    destructor Destrua_se; override;
+
+    function Salvar( PObj: Tobject ): string; override;
+    function Excluir( PObj: TObject ): string; override;
+    function Pesquisar( PChave: String ): string; override;
+    function Carregar( PObj: TObject ): string; override;
+    function GetDS: TDataSource; override;
+    procedure SetDM( PObj: TObject ); override;
+    function VerificaExiste: Boolean;
+  end;
+
+implementation
+
+uses
+  System.SysUtils;
+
+{ DaoServicos }
+
+function DaoServicos.Carregar( PObj: TObject ): string;
+var
+  MCidade: Cidades;
+begin
+  MCidade := Cidades( PObj );
+  MCidade.SetCodigo( UmDM.QServicos.FieldByName( 'CODIGO' ).Value );
+  MCidade.SetCidade( UmDM.QServicos.FieldByName( 'CIDADE' ).AsString );
+  MCidade.SetDDD( UmDM.QServicos.FieldByName( 'DDD' ).AsString );
+  MCidade.SetSigla( UmDM.QServicos.FieldByName( 'SIGLA' ).AsString );
+  MCidade.GetoEstado.SetCodigo( UmDM.QServicos.FieldByName( 'COD_ESTADO' ).AsInteger );
+  MCidade.SetDataCad( DateTimeToStr( UmDM.QServicos.FieldByName( 'DATACAD' ).AsDateTime ) );
+  MCidade.SetDataUltAlt( DateTimeToStr( UmDM.QServicos.FieldByName( 'DATAULTALT' ).AsDateTime ) );
+
+end;
+
+constructor DaoServicos.CrieObj;
+begin
+  inherited;
+
+end;
+
+destructor DaoServicos.Destrua_se;
+begin
+
+  inherited;
+end;
+
+function DaoServicos.Excluir( PObj: TObject ): string;
+var
+  MCidades: Cidades;
+begin
+
+  MCidades := Cidades( PObj );
+  UmDM.Trans.StartTransaction;
+  try
+    UmDM.QServicos.Edit;
+    UmDM.QServicos.Locate( 'CODIGO', MCidades.GetCodigo, [ ] );
+    UmDM.QServicos.Delete;
+    UmDM.Trans.Commit;
+  except
+    UmDM.Trans.Rollback;
+    Result := 'Erro ao deletar Registro!!';
+  end;
+end;
+
+function DaoServicos.GetDS: TDataSource;
+begin
+  Result := UmDM.DsCidades;
+end;
+
+function DaoServicos.Pesquisar( PChave: String ): string;
+begin
+  try
+    if not UmDM.QServicos.Active then
+      UmDM.QServicos.Active := True;
+
+    if PChave <> '' then
+    begin
+      if not IsNumero( PChave ) then
+        UmDM.QServicos.SQL.Text := 'select * from Cidades where cidade like ' + Chr( 39 ) + '%' + PChave + '%' + Chr( 39 ) + ' Order by cidade'
+      else
+        UmDM.QServicos.SQL.Text := 'select * from Cidades where codigo = ' + Quotedstr( PChave ) + ' Order by cidade'
+    end
+    else
+      UmDM.QServicos.SQL.Text := 'Select * from Cidades order by cidade';
+
+    UmDM.QServicos.Active := False;
+    UmDM.QServicos.Open;
+  except
+    Result := 'Erro ao Pesquisar!!';
+  end;
+end;
+
+function DaoServicos.Salvar( PObj: Tobject ): string;
+var
+  MCidade: Cidades;
+begin
+
+  MCidade := Cidades( PObj );
+  UmDM.Trans.StartTransaction;
+  try
+
+    if MCidade.GetCodigo = 0 then
+      UmDM.QServicos.Insert
+    else
+      UmDM.QServicos.Edit;
+
+    UmDM.QServicos.FieldByName( 'CODIGO' ).AsInteger     := MCidade.GetCodigo;
+    UmDM.QServicos.FieldByName( 'CIDADE' ).AsString      := MCidade.GetCidade;
+    UmDM.QServicos.FieldByName( 'DDD' ).AsString         := MCidade.GetDDD;
+    UmDM.QServicos.FieldByName( 'SIGLA' ).AsString       := MCidade.GetSigla;
+    UmDM.QServicos.FieldByName( 'COD_ESTADO' ).AsInteger := MCidade.GetoEstado.GetCodigo;
+    UmDM.QServicos.FieldByName( 'DATACAD' ).AsDateTime   := StrToDateTime( MCidade.GetDataCad );
+
+    UmDM.QServicos.Post;
+    UmDM.Trans.Commit;
+  except
+    UmDM.Trans.Rollback;
+    Result := 'Erro ao inserir registro!!';
+  end;
+end;
+
+procedure DaoServicos.SetDM( PObj: TObject );
+begin
+  inherited;
+
+end;
+
+function DaoServicos.VerificaExiste: Boolean;
+begin
+  Result := not( UmDM.QServicos.Eof );
+end;
+
+end.

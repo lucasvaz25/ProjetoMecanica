@@ -33,6 +33,7 @@ type
     LblPais: TLabel;
     procedure BtnPesquisarCadClick( Sender: TObject );
     procedure FormShow( Sender: TObject );
+    procedure EdtEstadoExit( Sender: TObject );
   private
     { Private declarations }
     OEstado: Estados;
@@ -40,6 +41,7 @@ type
     AConsultaPais: TConsultaPaises;
   public
     { Public declarations }
+    Msg: string;
     procedure Salvar; Override;
     procedure Sair; Override;
     procedure LimparEdt; Override;
@@ -78,7 +80,10 @@ begin
   AConsultaPais.BtnSair.Glyph.LoadFromFile( 'C:\Users\Vaz\OneDrive\Documentos\Sistemas de Informação\4º periodo\ProjetoMecanica\image\Ok.bmp' );
   AConsultaPais.ConhecaObj( OEstado.GetoPais, ACtrlEstado.GetCtrlPais );
   AConsultaPais.ShowModal;
-
+  OEstado.SetoPais( AConsultaPais.GetOPais );
+  ACtrlEstado.SetCtrlPais( AConsultaPais.GetACtrlPais );
+  EdtCodPais.Text               := IntToStr( OEstado.GetoPais.GetCodigo );
+  EdtPais.Text                  := OEstado.GetoPais.GetPais;
   AConsultaPais.BtnSair.Caption := MAux;
   AConsultaPais.BtnSair.Glyph.LoadFromFile( 'C:\Users\Vaz\OneDrive\Documentos\Sistemas de Informação\4º periodo\ProjetoMecanica\image\Sair.bmp' );
 end;
@@ -103,6 +108,8 @@ procedure TCadastroEstados.ConhecaObj( PObj, PCtrl: TObject );
 begin
   OEstado     := Estados( PObj );
   ACtrlEstado := ControllerEstados( PCtrl );
+  Self.LimparEdt;
+  Self.CarregaEdt;
 end;
 
 procedure TCadastroEstados.DesbloqueiaEdt;
@@ -115,10 +122,26 @@ begin
   Self.BtnPesquisarCad.Enabled := True;
 end;
 
+procedure TCadastroEstados.EdtEstadoExit( Sender: TObject );
+var
+  Msg: string;
+begin
+  inherited;
+  Msg := ACtrlEstado.Pesquisar( EdtEstado.Text );
+  if EdtCodigo.Text <> '0' then
+    Exit;
+  if ACtrlEstado.VerificaExiste then
+  begin
+    ShowMessage( Self.EdtEstado.Text + ( ', já foi cadastrado! ' ) );
+    EdtEstado.SetFocus;
+  end;
+end;
+
 procedure TCadastroEstados.FormShow( Sender: TObject );
 begin
   inherited;
-  EdtEstado.SetFocus;
+  if EdtCodigo.Text = '0' then
+    EdtEstado.SetFocus;
 end;
 
 procedure TCadastroEstados.LimparEdt;
@@ -132,6 +155,7 @@ end;
 
 procedure TCadastroEstados.Sair;
 begin
+  Msg := 'Saiu';
   inherited;
 
 end;
@@ -140,6 +164,51 @@ procedure TCadastroEstados.Salvar;
 begin
   inherited;
 
+  if EdtesTado.Text = '' then
+  begin
+    ShowMessage( 'Campo Estado é obrigatório!' );
+    EdtesTado.SetFocus;
+  end
+  else if EdtUF.Text = '' then
+  begin
+    ShowMessage( 'Campo UF é obrigatório!' );
+    EdtUF.SetFocus;
+  end
+  else if EdtPais.Text = '' then
+  begin
+    ShowMessage( 'Campo País é obrigatório!' );
+    EdtPais.SetFocus;
+  end
+  else
+  begin
+    with OEstado do
+    begin
+      SetCodigo( StrToInt( EdtCodigo.Text ) );
+      SetEstado( Edtestado.Text );
+      SetUF( EdtUF.Text );
+      GetoPais.SetCodigo( StrToInt( EdtCodPais.Text ) );
+
+      SetDataCad( EdtDataCad.Text );
+    end;
+    if BtnSalvar.Caption = '&Salvar' then
+    begin
+      Msg := ACtrlEstado.Salvar( OEstado );
+      if Msg = '' then
+      begin
+        Msg := 'Salvou';
+        Close;
+      end;
+    end
+    else
+    begin
+      Msg := ACtrlEstado.Excluir( OEstado );
+      if Msg = '' then
+      begin
+        Msg := 'Deletado';
+        Close;
+      end;
+    end;
+  end;
 end;
 
 procedure TCadastroEstados.SetConsultaPais( PConsultaPais: TObject );

@@ -90,6 +90,7 @@ inherited CadastroEstados: TCadastroEstados
       CharCase = ecUpperCase
       MaxLength = 50
       TabOrder = 6
+      OnExit = edtEstadoExit
     end
     object edtUF: TEdit
       Left = 569
@@ -105,6 +106,7 @@ inherited CadastroEstados: TCadastroEstados
       Top = 136
       Width = 57
       Height = 21
+      Enabled = False
       TabOrder = 8
     end
     object edtPais: TEdit
@@ -114,6 +116,7 @@ inherited CadastroEstados: TCadastroEstados
       Height = 21
       CharCase = ecUpperCase
       MaxLength = 50
+      ReadOnly = True
       TabOrder = 9
     end
   end

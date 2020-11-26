@@ -28,12 +28,14 @@ type
     LblSigla: TLabel;
     LblDDI: TLabel;
     procedure FormShow( Sender: TObject );
+    procedure EdtPaisExit( Sender: TObject );
   private
     { Private declarations }
     OPais: Paises;
     ACtrlPais: ControllerPaises;
   public
     { Public declarations }
+    Msg: string;
     procedure Salvar; override;
     procedure Sair; override;
     procedure LimparEdt; override;
@@ -41,6 +43,7 @@ type
     procedure BloqueiEdt; override;
     procedure DesbloqueiaEdt; override;
     procedure ConhecaObj( PObj: TObject; PCtrl: TObject ); override;
+
   end;
 
 var
@@ -76,6 +79,8 @@ begin
   inherited;
   OPais     := Paises( PObj );
   ACtrlPais := ControllerPaises( PCtrl );
+  Self.LimparEdt;
+  Self.CarregaEdt;
 end;
 
 procedure TCadastroPaises.DesbloqueiaEdt;
@@ -86,10 +91,26 @@ begin
   EdtDDI.Enabled   := True;
 end;
 
+procedure TCadastroPaises.EdtPaisExit( Sender: TObject );
+var
+  Msg: string;
+begin
+  inherited;
+  Msg := ACtrlPais.Pesquisar( EdtPais.Text );
+  if EdtCodigo.Text <> '0' then
+    Exit;
+  if ACtrlPais.VerificaExiste then
+  begin
+    ShowMessage( Self.EdtPais.Text + ( ', já foi cadastrado! ' ) );
+    EdtPais.SetFocus;
+  end;
+end;
+
 procedure TCadastroPaises.FormShow( Sender: TObject );
 begin
   inherited;
-  EdtPais.SetFocus;
+  if EdtCodigo.Text = '0' then
+    EdtPais.SetFocus;
 end;
 
 procedure TCadastroPaises.LimparEdt;
@@ -102,6 +123,7 @@ end;
 
 procedure TCadastroPaises.Sair;
 begin
+  Msg := 'Saiu';
   inherited;
 
 end;
@@ -109,7 +131,50 @@ end;
 procedure TCadastroPaises.Salvar;
 begin
   inherited;
-
+  if EdtPais.Text = '' then
+  begin
+    ShowMessage( 'Campo país é obrigatório!' );
+    EdtPais.SetFocus;
+  end
+  else if EdtDDI.Text = '' then
+  begin
+    ShowMessage( 'Campo DDI é obrigatório!' );
+    EdtDDI.SetFocus;
+  end
+  else if EdtSigla.Text = '' then
+  begin
+    ShowMessage( 'Campo Sigla é obrigatório!' );
+    EdtSigla.SetFocus;
+  end
+  else
+  begin
+    with OPais do
+    begin
+      SetCodigo( StrToInt( EdtCodigo.Text ) );
+      SetPais( EdtPais.Text );
+      SetDDI( EdtDDI.Text );
+      SetSigla( EdtSigla.Text );
+      SetDataCad( EdtDataCad.Text );
+    end;
+    if BtnSalvar.Caption = '&Salvar' then
+    begin
+      Msg := ACtrlPais.Salvar( OPais );
+      if Msg = '' then
+      begin
+        Msg := 'Salvou';
+        Close;
+      end;
+    end
+    else
+    begin
+      Msg := ACtrlPais.Excluir( OPais );
+      if Msg = '' then
+      begin
+        Msg := 'Deletado';
+        Close;
+      end;
+    end;
+  end;
 end;
 
 end.

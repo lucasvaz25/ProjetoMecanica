@@ -41,7 +41,11 @@ uses
   uTecnicos in 'Code\uTecnicos.pas',
   uControllerTecnicos in 'Code\uControllerTecnicos.pas',
   uDM in 'uDM.pas' {DM: TDataModule},
-  uDaoPaises in 'Code\uDaoPaises.pas';
+  uDaoPaises in 'Code\uDaoPaises.pas',
+  uDaoEstados in 'Code\uDaoEstados.pas',
+  uDaoCidades in 'Code\uDaoCidades.pas',
+  uDaoServicos in 'Code\uDaoServicos.pas',
+  uDaoDepartamentos in 'Code\uDaoDepartamentos.pas';
 
 {$R *.res}
 

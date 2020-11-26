@@ -21,6 +21,7 @@ type
     function Carregar( PObj: TObject ): string; virtual;
     function GetDS: TDataSource; virtual;
     procedure SetDm( PObj: TObject ); virtual;
+    function VerificaExiste: Boolean; virtual;
 
   end;
 
@@ -64,6 +65,11 @@ begin
 end;
 
 procedure Controller.SetDm( PObj: TObject );
+begin
+
+end;
+
+function Controller.VerificaExiste: Boolean;
 begin
 
 end;

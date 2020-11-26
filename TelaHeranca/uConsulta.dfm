@@ -29,6 +29,8 @@ object Consulta: TConsulta
       Top = 32
       Width = 472
       Height = 21
+      CharCase = ecUpperCase
+      MaxLength = 40
       TabOrder = 0
     end
     object DBGrid1: TDBGrid

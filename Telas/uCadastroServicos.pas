@@ -25,12 +25,14 @@ type
     EdtObs: TMemo;
     LblServico: TLabel;
     LblObs: TLabel;
+    procedure FormShow( Sender: TObject );
   private
     { Private declarations }
     OServico: Servicos;
     ACtrlServico: ControllerServicos;
   public
     { Public declarations }
+    Msg: string;
     procedure Salvar; Override;
     procedure Sair; Override;
     procedure LimparEdt; Override;
@@ -71,6 +73,8 @@ begin
   inherited;
   OServico     := Servicos( PObj );
   ACtrlServico := ControllerServicos( PCtrl );
+  Self.LimparEdt;
+  Self.CarregaEdt;
 end;
 
 procedure TCadastroServicos.DesbloqueiaEdt;
@@ -78,6 +82,13 @@ begin
   inherited;
   EdtServico.Enabled := True;
   EdtObs.Enabled     := True;
+end;
+
+procedure TCadastroServicos.FormShow( Sender: TObject );
+begin
+  inherited;
+  if EdtCodigo.Text = '0' then
+    EdtServico.SetFocus;
 end;
 
 procedure TCadastroServicos.LimparEdt;
@@ -89,6 +100,7 @@ end;
 
 procedure TCadastroServicos.Sair;
 begin
+  Msg := 'Saiu';
   inherited;
 
 end;
@@ -96,7 +108,39 @@ end;
 procedure TCadastroServicos.Salvar;
 begin
   inherited;
-
+  if EdtServico.Text = '' then
+  begin
+    ShowMessage( 'Campo Serviço é obrigatório!' );
+    EdtServico.SetFocus;
+  end
+  else
+  begin
+    with OServico do
+    begin
+      SetCodigo( StrToInt( EdtCodigo.Text ) );
+      Servico := EdtServico.Text;
+      Obs     := EdtObs.Text;
+      SetDataCad( EdtDataCad.Text );
+    end;
+    if BtnSalvar.Caption = '&Salvar' then
+    begin
+      Msg := ACtrlServico.Salvar( Oservico );
+      if Msg = '' then
+      begin
+        Msg := 'Salvou';
+        Close;
+      end;
+    end
+    else
+    begin
+      Msg := ACtrlServico.Excluir( OServico );
+      if Msg = '' then
+      begin
+        Msg := 'Deletado';
+        Close;
+      end;
+    end;
+  end;
 end;
 
 end.

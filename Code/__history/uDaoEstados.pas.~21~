@@ -1,0 +1,147 @@
+unit uDaoEstados;
+
+interface
+
+uses
+  Uestados,
+  UDAO,
+  Data.DB;
+
+type
+  DaoEstados = class( Dao )
+  private
+  protected
+  public
+    constructor CrieObj; override;
+    destructor Destrua_se; override;
+
+    function Salvar( PObj: Tobject ): string; override;
+    function Excluir( PObj: TObject ): string; override;
+    function Pesquisar( PChave: String ): string; override;
+    function Carregar( PObj: TObject ): string; override;
+    function GetDS: TDataSource; override;
+    procedure SetDM( PObj: TObject ); override;
+    function VerificaExiste: Boolean;
+  end;
+
+implementation
+
+uses
+  SysInit,
+  System.SysUtils;
+
+{ DaoEstados }
+
+function DaoEstados.Carregar( PObj: TObject ): string;
+var
+  MEstado: Estados;
+begin
+  MEstado := Estados( PObj );
+  MEstado.SetCodigo( UmDM.QEstados.FieldByName( 'CODIGO' ).Value );
+  MEstado.SetEstado( UmDM.QEstados.FieldByName( 'ESTADO' ).AsString );
+  MEstado.SetUF( UmDM.QEstados.FieldByName( 'UF' ).AsString );
+  MEstado.GetoPais.SetCodigo( UmDM.QEstados.FieldByName( 'COD_PAIS' ).AsInteger );
+  MEstado.SetDataCad( DateTimeToStr( UmDM.QEstados.FieldByName( 'DATACAD' ).AsDateTime ) );
+  MEstado.SetDataUltAlt( DateTimeToStr( UmDM.QEstados.FieldByName( 'DATAULTALT' ).AsDateTime ) );
+
+end;
+
+constructor DaoEstados.CrieObj;
+begin
+  inherited;
+
+end;
+
+destructor DaoEstados.Destrua_se;
+begin
+
+  inherited;
+end;
+
+function DaoEstados.Excluir( PObj: TObject ): string;
+var
+  MEstados: Estados;
+begin
+
+  MEstados := Estados( PObj );
+  UmDM.Trans.StartTransaction;
+  try
+    UmDM.QEstados.Edit;
+    // UmDM.QPaises.SQL.Text := 'DELETE FROM PAISES WHERE CODIGO = ' + QuotedStr( IntToStr( Mpais.GetCodigo ) );
+    UmDM.QEstados.Locate( 'CODIGO', MEstados.GetCodigo, [ ] );
+    UmDM.QEstados.Delete;
+    UmDM.Trans.Commit;
+  except
+    UmDM.Trans.Rollback;
+    Result := 'Erro ao deletar Registro!!';
+  end;
+end;
+
+function DaoEstados.GetDS: TDataSource;
+begin
+  Result := UmDM.DsEstados;
+end;
+
+function DaoEstados.Pesquisar( PChave: String ): string;
+begin
+  try
+    if not UmDM.QEstados.Active then
+      UmDM.QEstados.Active := True;
+
+    if PChave <> '' then
+    begin
+      if not IsNumero( PChave ) then
+        UmDM.QEstados.SQL.Text := 'select * from estados where estado like ' + Chr( 39 ) + '%' + PChave + '%' + Chr( 39 ) + ' Order by pais'
+      else
+        UmDM.QEstados.SQL.Text := 'select * from estados where codigo = ' + Quotedstr( PChave ) + ' Order by estado'
+    end
+    else
+      UmDM.QEstados.SQL.Text := 'Select * from estados order by estado';
+
+    UmDM.QEstados.Active := False;
+    UmDM.QEstados.Open;
+  except
+    Result := 'Erro ao Pesquisar!!';
+  end;
+end;
+
+function DaoEstados.Salvar( PObj: Tobject ): string;
+var
+  MEstado: Estados;
+begin
+
+  MEstado := Estados( PObj );
+  UmDM.Trans.StartTransaction;
+  try
+
+    if MEstado.GetCodigo = 0 then
+      UmDM.QEstados.Insert
+    else
+      UmDM.QEstados.Edit;
+
+    UmDM.QEstados.FieldByName( 'CODIGO' ).AsInteger   := MEstado.GetCodigo;
+    UmDM.QEstados.FieldByName( 'PAIS' ).AsString      := MEstado.GetPais;
+    UmDM.QEstados.FieldByName( 'DDI' ).AsString       := MEstado.GetDDI;
+    UmDM.QEstados.FieldByName( 'SIGLA' ).AsString     := MEstado.GetSigla;
+    UmDM.QEstados.FieldByName( 'DATACAD' ).AsDateTime := StrToDateTime( MEstado.GetDataCad );
+
+    UmDM.QEstados.Post;
+    UmDM.Trans.Commit;
+  except
+    UmDM.Trans.Rollback;
+    Result := 'Erro ao inserir registro!!';
+  end;
+end;
+
+procedure DaoEstados.SetDM( PObj: TObject );
+begin
+  inherited;
+
+end;
+
+function DaoEstados.VerificaExiste: Boolean;
+begin
+
+end;
+
+end.

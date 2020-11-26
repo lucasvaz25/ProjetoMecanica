@@ -1,0 +1,84 @@
+unit uDAO;
+
+interface
+
+uses
+  Data.DB,
+  UDM;
+
+type
+  DAO = class
+  private
+  protected
+    UmDM: TDM;
+  public
+    constructor CrieObj; virtual;
+    destructor Destrua_se; virtual;
+
+    function Salvar( PObj: Tobject ): string; virtual;
+    function Excluir( PObj: TObject ): string; virtual;
+    procedure SetDM( PObj: TObject ); virtual;
+    function Pesquisar( PChave: String ): string; virtual;
+    function Carregar( PObj: TObject ): string; virtual;
+    function GetDS: TDataSource; virtual;
+    function IsNumero( Value: string ): Boolean;
+  end;
+
+implementation
+
+{ DAO }
+
+function DAO.Carregar( PObj: TObject ): string;
+begin
+
+end;
+
+constructor DAO.CrieObj;
+begin
+
+end;
+
+destructor DAO.Destrua_se;
+begin
+
+end;
+
+function DAO.Excluir( PObj: TObject ): string;
+begin
+
+end;
+
+function DAO.GetDS: TDataSource;
+begin
+
+end;
+
+function DAO.IsNumero( Value: string ): Boolean;
+begin
+  Result :=
+end;
+
+function DAO.Pesquisar( PChave: String ): string;
+begin
+
+end;
+
+function DAO.Salvar( PObj: Tobject ): string;
+begin
+
+end;
+
+procedure DAO.SetDM( PObj: TObject );
+begin
+  UmDM := TDM( PObj );
+  try
+    if not UmDM.Conexao.Connected then
+      UmDM.Conexao.Connected := True;
+    if not UmDM.Trans.Active then
+      UmDM.Conexao.Open( );
+  except
+
+  end;
+end;
+
+end.

@@ -97,6 +97,7 @@ inherited CadastroCidades: TCadastroCidades
       CharCase = ecUpperCase
       MaxLength = 50
       TabOrder = 6
+      OnExit = edtCidadeExit
     end
     object edtSigla: TEdit
       Left = 465
@@ -120,6 +121,7 @@ inherited CadastroCidades: TCadastroCidades
       Top = 159
       Width = 63
       Height = 21
+      ReadOnly = True
       TabOrder = 9
     end
     object edtEstado: TEdit
@@ -129,6 +131,7 @@ inherited CadastroCidades: TCadastroCidades
       Height = 21
       CharCase = ecUpperCase
       MaxLength = 50
+      ReadOnly = True
       TabOrder = 10
     end
   end

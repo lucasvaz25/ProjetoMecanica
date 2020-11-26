@@ -21,9 +21,13 @@ type
     function Pesquisar( PChave: String ): string; virtual;
     function Carregar( PObj: TObject ): string; virtual;
     function GetDS: TDataSource; virtual;
+    function IsNumero( Value: string ): Boolean;
   end;
 
 implementation
+
+uses
+  System.SysUtils;
 
 { DAO }
 
@@ -50,6 +54,13 @@ end;
 function DAO.GetDS: TDataSource;
 begin
 
+end;
+
+function DAO.IsNumero( Value: string ): Boolean;
+var
+  X: Integer;
+begin
+  Result := TryStrToInt( Value, X );
 end;
 
 function DAO.Pesquisar( PChave: String ): string;

@@ -39,6 +39,8 @@ type
     procedure Pesquisar; override;
     procedure SetFormCadastro( PObj: TObject ); override;
     procedure ConhecaObj( PObj: TObject; PCtrl: TObject ); override;
+    function GetACidade: Cidades;
+    function GetACtrlCidade: ControllerCidades;
   end;
 
 var
@@ -53,20 +55,48 @@ implementation
 procedure TConsultaCidades.Alterar;
 begin
   inherited;
-
+  ACtrlCidade.Carregar( ACidade );
+  OCadastroCidade.ConhecaObj( ACidade, ACtrlCidade );
+  OCadastroCidade.ShowModal;
+  if OCadastroCidade.Msg = 'Salvou' then
+    ACtrlCidade.Pesquisar( ACidade.GetCidade )
+  else
+    ACtrlCidade.Pesquisar( '' );
 end;
 
 procedure TConsultaCidades.ConhecaObj( PObj, PCtrl: TObject );
 begin
   inherited;
-  ACidade     := Cidades( PObj );
-  ACtrlCidade := ControllerCidades( PCtrl );
+  ACidade                 := Cidades( PObj );
+  ACtrlCidade             := ControllerCidades( PCtrl );
+  Self.DBGrid1.DataSource := ACtrlCidade.GetDS;
+  ACtrlCidade.Pesquisar( Self.EdtPesquisa.Text );
 end;
 
 procedure TConsultaCidades.Excluir;
+var
+  Aux: string;
 begin
+  ACtrlCidade.Carregar( ACidade );
+  OCadastroCidade.ConhecaObj( ACidade, ACtrlCidade );
+  OCadastroCidade.BloqueiEdt;
+  Aux                               := OCadastroCidade.BtnSalvar.Caption;
+  OCadastroCidade.BtnSalvar.Caption := '&Excluir';
+  OCadastroCidade.ShowModal;
+  OCadastroCidade.BtnSalvar.Caption := Aux;
+  OCadastroCidade.DesbloqueiaEdt;
+  ACtrlCidade.Pesquisar( Self.EdtPesquisa.Text );
   inherited;
+end;
 
+function TConsultaCidades.GetACidade: Cidades;
+begin
+  Result := Self.ACidade;
+end;
+
+function TConsultaCidades.GetACtrlCidade: ControllerCidades;
+begin
+  Result := Self.ACtrlCidade;
 end;
 
 procedure TConsultaCidades.Novo;
@@ -75,18 +105,26 @@ begin
   OCadastroCidade.ConhecaObj( ACidade, ACtrlCidade );
   OCadastroCidade.LimparEdt;
   OCadastroCidade.ShowModal;
+  ACtrlCidade.Pesquisar( ACidade.GetCidade );
+
+  inherited;
 end;
 
 procedure TConsultaCidades.Pesquisar;
 begin
   inherited;
-
+  ACtrlCidade.Pesquisar( Self.EdtPesquisa.Text );
 end;
 
 procedure TConsultaCidades.Sair;
 begin
-  inherited;
-
+  if Self.BtnSair.Caption = 'Selecionar' then
+  begin
+    ACtrlCidade.Carregar( ACidade );
+    inherited;
+  end
+  else
+    inherited;
 end;
 
 procedure TConsultaCidades.SetFormCadastro( PObj: TObject );

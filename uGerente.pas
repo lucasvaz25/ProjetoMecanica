@@ -130,6 +130,14 @@ begin
   ACtrlFuncionario.SetCtrlCidade( ACtrlCidade );
 
   ACtrlPais.SetDm( ADM );
+  ACtrlEstado.SetDm( ADM );
+  ACtrlCidade.SetDm( ADM );
+  ACtrlServico.SetDm( ADM );
+  ACtrlTecnico.SetDm( ADM );
+  ACtrlFuncionario.SetDm( ADM );
+  ACtrlDepartamento.SetDm( ADM );
+  ACtrlCargo.SetDm( ADM );
+
 end;
 
 procedure TGerente.FormDestroy( Sender: TObject );
